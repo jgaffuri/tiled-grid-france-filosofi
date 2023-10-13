@@ -22,3 +22,9 @@ Les autre colonnes peuvent être supprimées:
 - Pour 2017, nous avons: Idcar_1km,Idcar_nat,I_est_1km,lcog_geo, Groupe
 - Pour 2015, nous avons: Id_carr1km,Id_carr_n,Groupe,Depcom,I_pauv,Id_car2010,I_est_1km
 
+TODO: script d'harmonisation
+TODO: voir https://github.com/jgaffuri/tiledgrids/tree/main/data/france/filosofi
+
+
+## Tiling
+
