@@ -1,9 +1,17 @@
 #!/home/juju/pythonvenvgridDE/bin python
 
-# /home/juju/pythonvenvgridDE/bin/python ./src/preparation.py /usr/bin/python3 /home/juju/workspace/tiled-grid-germany-zensus2011/src/preparation.py
+# /home/juju/pythonvenvgridDE/bin/python ./src/preparation.py /usr/bin/python3 /home/juju/workspace/tiled-grid-france-filosofi/src/preparation.py
 
 import pandas as pd
 import numpy as np
+
+
+print("Load data")
+df = pd.read_csv("2019_reun.csv") #, nrows=10000)
+
+print(df)
+
+
 
 
 def prepare(csvfile, sep, code, printfinal):
@@ -47,7 +55,3 @@ def prepare(csvfile, sep, code, printfinal):
 
     print("Done " + code)
 
-
-#printfinal = False
-#csvfileDemo = "input//.csv"
-#prepare(csvfileDemo, ";", "STAATSANGE_GRP", printfinal)
