@@ -7,9 +7,11 @@ import numpy as np
 
 
 print("Load data")
-df = pd.read_csv("2019_reun.csv") #, nrows=10000)
+df = pd.read_csv("input/2019_reun.csv") #, nrows=10000)
 
 print(df)
+
+
 
 
 

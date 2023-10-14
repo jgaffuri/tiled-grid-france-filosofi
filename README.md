@@ -8,7 +8,7 @@ Les données peuvent être téléchargées depuis le site de l'INSEE, par année
 - 2017: https://www.insee.fr/fr/statistiques/6215217
 - 2019: https://www.insee.fr/fr/statistiques/7655515
 
-Les fichiers en entrée sont dans le répertoire [/input/]. Les fichiers ont été renomés pour suivre le même modèle de nom.
+Les fichiers en entrée sont dans le répertoire */input/*. Les fichiers ont été renomés pour suivre le même modèle de nom.
 
 ## Harmonisation de structure
 
@@ -18,8 +18,8 @@ Malheureusement, les fichers CSV n'ont pas la même structure et doivent être h
 - Les données d'imputation sont *i_est_200* pour 2019, *I_est_200* pour 2015 et *I_est_cr* pour 2015.
 
 Les autre colonnes peuvent être supprimées:
-- Pour 2019, nous avons: idcar_1km,idcar_nat,i_est_1km,lcog_geo,
-- Pour 2017, nous avons: Idcar_1km,Idcar_nat,I_est_1km,lcog_geo, Groupe
+- Pour 2019, nous avons: idcar_1km,idcar_nat,i_est_1km,lcog_geo
+- Pour 2017, nous avons: Idcar_1km,Idcar_nat,I_est_1km,lcog_geo,Groupe
 - Pour 2015, nous avons: Id_carr1km,Id_carr_n,Groupe,Depcom,I_pauv,Id_car2010,I_est_1km
 
 TODO: script d'harmonisation
