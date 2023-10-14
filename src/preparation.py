@@ -4,15 +4,25 @@
 
 import pandas as pd
 import numpy as np
+import os  
 
+year = "2019"
+geo = "reun"
 
 print("Load data")
-df = pd.read_csv("input/2019_reun.csv") #, nrows=10000)
+df = pd.read_csv("input/"+year+"_"+geo+".csv") #, nrows=10000)
+
+print("drop unecessary columns")
+df = df.drop(["idcar_1km", "idcar_nat", "i_est_1km", "lcog_geo"], axis=1)
+
+print("Rename id column")
+df = df.rename(columns={"idcar_200m": "id"})
 
 print(df)
 
-
-
+print("Save")
+os.mkdir("tmp")
+df.to_csv("tmp/"+year+"_"+geo+".csv")
 
 
 
