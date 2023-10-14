@@ -21,8 +21,8 @@ df = df.rename(columns={"idcar_200m": "id"})
 print(df)
 
 print("Save")
-os.mkdir("tmp")
-df.to_csv("tmp/"+year+"_"+geo+".csv")
+if not os.path.exists('tmp'): os.makedirs('tmp')
+df.to_csv("tmp/"+year+"_"+geo+".csv", index=False)
 
 
 
