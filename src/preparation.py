@@ -23,6 +23,17 @@ def prepare2019(geo, printfinal):
     if not os.path.exists('tmp'): os.makedirs('tmp')
     df.to_csv("tmp/"+year+"_"+geo+".csv", index=False)
 
+    print("Done 2019 " + geo)
+
+
+prepare2019("reun", true)
+
+
+
+
+
+
+
 
 
 def prepare(csvfile, sep, code, printfinal):
@@ -65,4 +76,3 @@ def prepare(csvfile, sep, code, printfinal):
     df.to_csv("input/out_" + code + ".csv")
 
     print("Done " + code)
-
