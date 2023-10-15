@@ -7,7 +7,7 @@ import subprocess
 # subprocess.run(['export NODE_OPTIONS="--max-old-space-size=16384"'])
 
 
-def getParams(year, geo, a, t, crs, x, y, outFolder):
+def getParams(year, geo, a, t, crs, x, y, rounding, outFolder):
     return [
         "gridtiler",
         "-i",
@@ -30,6 +30,8 @@ def getParams(year, geo, a, t, crs, x, y, outFolder):
         "./out/csv/" + outFolder + "/" + year + "/" + geo + "/" + str(a * 200) + "m/",
         "-t",
         str(t),
+        "-R",
+        str(rounding),
         "-e",
         "csv",
     ]
@@ -39,25 +41,25 @@ def tuilage(year, geo, a, crs, x, y):
     print("*** " + year + " " + geo + " " + str(a * 200) + "m")
 
     # ind
-    params = getParams(year, geo, a, 128, crs, x, y, "ind")
+    params = getParams(year, geo, a, 128, crs, x, y, 2, "ind")
     params.append("-s")
     params.append("id,imputed,ind,ind_0_3,ind_11_17,ind_18_24,ind_25_39,ind_40_54,ind_4_5,ind_55_64,ind_65_79,ind_6_10,ind_80p,ind_inc")
     subprocess.run(params)
 
     # log
-    params = getParams(year, geo, a, 128, crs, x, y, "log")
+    params = getParams(year, geo, a, 128, crs, x, y, 2, "log")
     params.append("-s")
     params.append("id,imputed,ind,log_45_70,log_70_90,log_ap90,log_av45,log_inc,log_soc")
     subprocess.run(params)
 
     # men
-    params = getParams(year, geo, a, 128, crs, x, y, "men")
+    params = getParams(year, geo, a, 128, crs, x, y, 2, "men")
     params.append("-s")
     params.append("id,imputed,ind,men,men_1ind,men_5ind,men_coll,men_fmp,men_mais,men_pauv,men_prop,men_surf")
     subprocess.run(params)
 
     # inc
-    params = getParams(year, geo, a, 256, crs, x, y, "inc")
+    params = getParams(year, geo, a, 256, crs, x, y, 2, "inc")
     params.append("-s")
     params.append("id,imputed,ind,ind_snv")
     subprocess.run(params)
