@@ -8,6 +8,8 @@ Les données peuvent être téléchargées depuis le site de l'INSEE, par année
 - 2017: https://www.insee.fr/fr/statistiques/6215217
 - 2019: https://www.insee.fr/fr/statistiques/7655515
 
+Il y a un fichier pour la france métropolitaine (*met*), un pour le Réunion (*reun*) et un pour la Martinique (*mart*).
+
 ## Harmonisation
 
 Malheureusement, les fichers CSV n'ont pas les mêmes structures et doivent être harmonisés.
