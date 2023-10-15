@@ -9,7 +9,7 @@ import os
 
 def harmonise(year, geo, printfinal):
 
-    print("Charge "+year+" " + geo)
+    print("Charge CSV")
     df = pd.read_csv("input/"+year+"_"+geo+".csv") #, nrows=10000)
 
     print("Supprime colonnes inutilisées")
@@ -36,11 +36,10 @@ def harmonise(year, geo, printfinal):
     if not os.path.exists('tmp'): os.makedirs('tmp')
     df.to_csv("tmp/"+year+"_"+geo+".csv", index=False)
 
-    print("Fait - "+year+" " + geo)
-
 
 
 #execute harmonisation function for all years and geo regions
 for geo in ["mart","reun","met"]:
     for year in ["2015","2017","2019"]:
+        print("*** "+year+" "+geo)
         harmonise(year, geo, False)
