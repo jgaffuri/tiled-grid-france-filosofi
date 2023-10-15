@@ -6,6 +6,32 @@ import pandas as pd
 import numpy as np
 import os  
 
+
+
+
+def prepare2017(geo, printfinal):
+
+    print("Load data 2017 " + geo)
+    df = pd.read_csv("input/2017_"+geo+".csv") #, nrows=10000)
+
+    print("Drop unecessary columns")
+    df = df.drop(["Idcar_1km", "Idcar_nat", "I_est_1km", "lcog_geo", "Groupe"], axis=1)
+
+    print("Rename id column")
+    df = df.rename(columns={"Idcar_200m": "id"})
+
+    if(printfinal): print(df)
+
+    print("Save")
+    if not os.path.exists('tmp'): os.makedirs('tmp')
+    df.to_csv("tmp/2017_"+geo+".csv", index=False)
+
+    print("Done 2017 " + geo)
+
+
+prepare2017("reun", True)
+
+
 def prepare2019(geo, printfinal):
 
     print("Load data 2019 " + geo)
@@ -28,7 +54,7 @@ def prepare2019(geo, printfinal):
 
 #prepare2019("reun", False)
 #prepare2019("mart", False)
-prepare2019("met", False)
+#prepare2019("met", False)
 
 
 
