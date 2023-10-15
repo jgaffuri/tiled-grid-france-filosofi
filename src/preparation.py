@@ -21,12 +21,14 @@ def prepare2019(geo, printfinal):
 
     print("Save")
     if not os.path.exists('tmp'): os.makedirs('tmp')
-    df.to_csv("tmp/"+year+"_"+geo+".csv", index=False)
+    df.to_csv("tmp/2019_"+geo+".csv", index=False)
 
     print("Done 2019 " + geo)
 
 
-prepare2019("reun", true)
+#prepare2019("reun", False)
+#prepare2019("mart", False)
+prepare2019("met", False)
 
 
 
