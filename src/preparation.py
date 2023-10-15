@@ -13,7 +13,7 @@ def prepare(year, geo, printfinal):
     df = pd.read_csv("input/"+year+"_"+geo+".csv") #, nrows=10000)
 
     print("Supprime colonnes inutilisées")
-    colSup = ["Idcar_1km", "Idcar_nat", "I_est_1km", "lcog_geo", "Groupe"] if year == "2017" else ["idcar_1km", "idcar_nat", "i_est_1km", "lcog_geo"] if year == "2019" else []
+    colsSup = ["Idcar_1km", "Idcar_nat", "I_est_1km", "lcog_geo", "Groupe"] if year == "2017" else ["idcar_1km", "idcar_nat", "i_est_1km", "lcog_geo"] if year == "2019" else []
     df = df.drop(colsSup, axis=1)
 
     print("Renomme colonne id")
