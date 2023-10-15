@@ -29,11 +29,11 @@ def getParams(year, geo, a, t, crs, x, y, rounding, outFolder):
         str(a),
         "-o",
         "./out/csv/"
+        + "/"
+        + geo
         + outFolder
         + "/"
         + str(year)
-        + "/"
-        + geo
         + "/"
         + str(a * 200)
         + "m/",
@@ -48,7 +48,7 @@ def getParams(year, geo, a, t, crs, x, y, rounding, outFolder):
 
 #
 def tuilage(year, geo, a, crs, x, y):
-    print("*** " + str(year) + " " + geo + " " + str(a * 200) + "m")
+    print("*** " + geo + " " + str(year) + " " + str(a * 200) + "m")
 
     # population, par âge
     params = getParams(year, geo, a, 128, crs, x, y, 2, "ind")
@@ -81,12 +81,19 @@ def tuilage(year, geo, a, crs, x, y):
     subprocess.run(params)
 
 
-# lance le tuilage pour toutes les années, toutes les résolution et tous les territoires geographiques
+# lance le tuilage pour tous les territoires geographiques, toutes les années et toutes les résolution
+
+# reunion
 for year in [2019, 2017, 2015]:
     for a in [1, 2, 5, 10, 25, 50, 100, 250, 500]:
-        # reunion
-        #tuilage(year, "reun", a, "2975", 300000, 7600000)
-        # martinique
-        #tuilage(year, "mart", a, "5490", 600000, 1500000)
-        # metropole
+        tuilage(year, "reun", a, "2975", 300000, 7600000)
+
+# martinique
+for year in [2019, 2017, 2015]:
+    for a in [1, 2, 5, 10, 25, 50, 100, 250, 500]:
+        tuilage(year, "mart", a, "5490", 600000, 1500000)
+
+# metropole
+for year in [2019, 2017, 2015]:
+    for a in [1, 2, 5, 10, 25, 50, 100, 250, 500]:
         tuilage(year, "met", a, "3035", 3200000, 2000000)
