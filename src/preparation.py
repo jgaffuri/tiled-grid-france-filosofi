@@ -6,23 +6,22 @@ import pandas as pd
 import numpy as np
 import os  
 
-year = "2019"
-geo = "reun"
+def prepare2019(geo, printfinal):
 
-print("Load data")
-df = pd.read_csv("input/"+year+"_"+geo+".csv") #, nrows=10000)
+    print("Load data 2019 " + geo)
+    df = pd.read_csv("input/2019_"+geo+".csv") #, nrows=10000)
 
-print("drop unecessary columns")
-df = df.drop(["idcar_1km", "idcar_nat", "i_est_1km", "lcog_geo"], axis=1)
+    print("drop unecessary columns")
+    df = df.drop(["idcar_1km", "idcar_nat", "i_est_1km", "lcog_geo"], axis=1)
 
-print("Rename id column")
-df = df.rename(columns={"idcar_200m": "id"})
+    print("Rename id column")
+    df = df.rename(columns={"idcar_200m": "id"})
 
-print(df)
+    if(printfinal): print(df)
 
-print("Save")
-if not os.path.exists('tmp'): os.makedirs('tmp')
-df.to_csv("tmp/"+year+"_"+geo+".csv", index=False)
+    print("Save")
+    if not os.path.exists('tmp'): os.makedirs('tmp')
+    df.to_csv("tmp/"+year+"_"+geo+".csv", index=False)
 
 
 
