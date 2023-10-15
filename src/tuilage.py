@@ -89,4 +89,4 @@ for year in [2019, 2017, 2015]:
         # martinique
         tuilage(year, "mart", a, "5490", 600000, 1500000)
         # metropole
-        tuilage(year, "met", a, "3035", 3200000, 2000000)
+        #tuilage(year, "met", a, "3035", 3200000, 2000000)
