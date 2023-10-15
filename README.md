@@ -24,7 +24,7 @@ Les autre colonnes peuvent être supprimées:
 - Pour 2017, nous avons: *Idcar_1km, Idcar_nat, I_est_1km, lcog_geo, Groupe*
 - Pour 2015, nous avons: *Id_carr1km, Id_carr_n, Groupe, Depcom, I_pauv, Id_car2010, I_est_1km*
 
-Le script d'harmonisation, en Pyhon, est [ICI](/src/harmonise.py).
+Le script d'harmonisation, en Pyhon, est [**ICI**](/src/harmonise.py).
 
 ## Tiling
 
