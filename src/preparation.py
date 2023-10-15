@@ -19,7 +19,9 @@ def prepare2017(geo, printfinal):
     print("Renomme colonne id")
     df = df.rename(columns={"Idcar_200m": "id"})
 
-#en capitale
+    print("Change noms colonnes en lettres minuscules")
+    df.columns = df.columns.str.lower()
+
 #ordonne les colonnes par ordre alphabetique
 
     if(printfinal): print(df)
