@@ -7,7 +7,7 @@ import numpy as np
 import os  
 
 
-def prepare(year, geo, printfinal):
+def harmonise(year, geo, printfinal):
 
     print("Charge "+year+" " + geo)
     df = pd.read_csv("input/"+year+"_"+geo+".csv") #, nrows=10000)
@@ -40,14 +40,14 @@ def prepare(year, geo, printfinal):
 
 
 
-prepare("2015", "reun", False)
-prepare("2015", "mart", False)
-prepare("2015", "met", False)
-prepare("2017", "reun", False)
-prepare("2017", "mart", False)
-prepare("2017", "met", False)
-prepare("2019", "reun", False)
-prepare("2019", "mart", False)
-prepare("2019", "met", False)
+harmonise("2015", "reun", False)
+harmonise("2015", "mart", False)
+harmonise("2015", "met", False)
+harmonise("2017", "reun", False)
+harmonise("2017", "mart", False)
+harmonise("2017", "met", False)
+harmonise("2019", "reun", False)
+harmonise("2019", "mart", False)
+harmonise("2019", "met", False)
 
 
