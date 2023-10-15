@@ -13,12 +13,16 @@ def prepare(year, geo, printfinal):
     df = pd.read_csv("input/"+year+"_"+geo+".csv") #, nrows=10000)
 
     print("Supprime colonnes inutilisées")
-    colsSup = ["Idcar_1km", "Idcar_nat", "I_est_1km", "lcog_geo", "Groupe"] if year == "2017" else ["idcar_1km", "idcar_nat", "i_est_1km", "lcog_geo"] if year == "2019" else []
+    colsSup = ["Id_carr1km", "Id_carr_n", "Groupe", "Depcom", "I_pauv", "Id_car2010", "I_est_1km"] if year == "2015" else ["Idcar_1km", "Idcar_nat", "I_est_1km", "lcog_geo", "Groupe"] if year == "2017" else ["idcar_1km", "idcar_nat", "i_est_1km", "lcog_geo"] if year == "2019" else []
     df = df.drop(colsSup, axis=1)
 
     print("Renomme colonne id")
-    colId = "Idcar_200m" if year == "2017" else "idcar_200m" if year == "2019" else ""
+    colId = "IdINSPIRE" if year=="2015" else "Idcar_200m" if year == "2017" else "idcar_200m" if year == "2019" else ""
     df = df.rename(columns={colId: "id"})
+
+    print("Renomme colonne imputation")
+    colImp = "I_est_cr" if year=="2015" else "I_est_200" if year == "2017" else "i_est_200" if year == "2019" else ""
+    df = df.rename(columns={colImp: "imputed"})
 
     print("Change noms colonnes en lettres minuscules")
     df.columns = df.columns.str.lower()
@@ -36,6 +40,9 @@ def prepare(year, geo, printfinal):
 
 
 
+prepare("2015", "reun", False)
+prepare("2015", "mart", False)
+prepare("2015", "met", False)
 prepare("2017", "reun", False)
 prepare("2017", "mart", False)
 prepare("2017", "met", False)
