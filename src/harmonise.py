@@ -1,6 +1,6 @@
 #!/home/juju/pythonvenvgridDE/bin python
 
-# /home/juju/pythonvenvgridDE/bin/python ./src/preparation.py /usr/bin/python3 /home/juju/workspace/tiled-grid-france-filosofi/src/harmonise.py
+# /home/juju/pythonvenvgridDE/bin/python ./src/harmonise.py /usr/bin/python3 /home/juju/workspace/tiled-grid-france-filosofi/src/harmonise.py
 
 import pandas as pd
 import numpy as np
@@ -40,14 +40,7 @@ def harmonise(year, geo, printfinal):
 
 
 
-harmonise("2015", "reun", False)
-harmonise("2015", "mart", False)
-harmonise("2015", "met", False)
-harmonise("2017", "reun", False)
-harmonise("2017", "mart", False)
-harmonise("2017", "met", False)
-harmonise("2019", "reun", False)
-harmonise("2019", "mart", False)
-harmonise("2019", "met", False)
-
-
+#execute harmonisation function for all years and geo regions
+for geo in ["mart","reun","met"]:
+    for year in ["2015","2017","2019"]:
+        harmonise(year, geo, False)
