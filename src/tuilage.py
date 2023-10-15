@@ -83,7 +83,7 @@ def tuilage(year, geo, a, crs, x, y):
 
 # lance le tuilage pour toutes les années, toutes les résolution et tous les territoires geographiques
 for year in [2019, 2017, 2015]:
-    for a in [1, 2, 5, 10, 20, 50, 100, 200, 500]:
+    for a in [1, 2, 5, 10, 25, 50, 100, 250, 500]:
         # reunion
         #tuilage(year, "reun", a, "2975", 300000, 7600000)
         # martinique
