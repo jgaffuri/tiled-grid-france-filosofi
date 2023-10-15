@@ -1,6 +1,6 @@
 #!/home/juju/pythonvenvgridDE/bin python
 
-# /home/juju/pythonvenvgridDE/bin/python ./src/preparation.py /usr/bin/python3 /home/juju/workspace/tiled-grid-france-filosofi/src/preparation.py
+# /home/juju/pythonvenvgridDE/bin/python ./src/preparation.py /usr/bin/python3 /home/juju/workspace/tiled-grid-france-filosofi/src/harmonise.py
 
 import pandas as pd
 import numpy as np
