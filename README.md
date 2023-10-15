@@ -28,6 +28,6 @@ Les autre colonnes peuvent être supprimées:
 
 Le script d'harmonisation, en Pyhon, est [**ICI**](/src/harmonise.py).
 
-## Tiling
+## Tuilage
 
-TODO
+Le script `tuilage.py` formate les données (filtrage, transormation, tuilage). Le programme [GridTiler](https://github.com/eurostat/gridtiler#installation) doit être installée. Les données finales sont produites dans le répertoire `out/`.
