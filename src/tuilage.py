@@ -7,6 +7,7 @@ import subprocess
 # subprocess.run(['export NODE_OPTIONS="--max-old-space-size=16384"'])
 
 
+# Build default array of parameters for gridtiler
 def getParams(year, geo, a, t, crs, x, y, rounding, outFolder):
     return [
         "gridtiler",
@@ -27,7 +28,15 @@ def getParams(year, geo, a, t, crs, x, y, rounding, outFolder):
         "-a",
         str(a),
         "-o",
-        "./out/csv/" + outFolder + "/" + str(year) + "/" + geo + "/" + str(a * 200) + "m/",
+        "./out/csv/"
+        + outFolder
+        + "/"
+        + str(year)
+        + "/"
+        + geo
+        + "/"
+        + str(a * 200)
+        + "m/",
         "-t",
         str(t),
         "-R",
@@ -37,25 +46,32 @@ def getParams(year, geo, a, t, crs, x, y, rounding, outFolder):
     ]
 
 
+#
 def tuilage(year, geo, a, crs, x, y):
     print("*** " + str(year) + " " + geo + " " + str(a * 200) + "m")
 
     # ind
     params = getParams(year, geo, a, 128, crs, x, y, 2, "ind")
     params.append("-s")
-    params.append("id,imputed,ind,ind_0_3,ind_11_17,ind_18_24,ind_25_39,ind_40_54,ind_4_5,ind_55_64,ind_65_79,ind_6_10,ind_80p,ind_inc")
+    params.append(
+        "id,imputed,ind,ind_0_3,ind_11_17,ind_18_24,ind_25_39,ind_40_54,ind_4_5,ind_55_64,ind_65_79,ind_6_10,ind_80p,ind_inc"
+    )
     subprocess.run(params)
 
     # log
     params = getParams(year, geo, a, 128, crs, x, y, 2, "log")
     params.append("-s")
-    params.append("id,imputed,ind,log_45_70,log_70_90,log_ap90,log_av45,log_inc,log_soc")
+    params.append(
+        "id,imputed,ind,log_45_70,log_70_90,log_ap90,log_av45,log_inc,log_soc"
+    )
     subprocess.run(params)
 
     # men
     params = getParams(year, geo, a, 128, crs, x, y, 2, "men")
     params.append("-s")
-    params.append("id,imputed,ind,men,men_1ind,men_5ind,men_coll,men_fmp,men_mais,men_pauv,men_prop,men_surf")
+    params.append(
+        "id,imputed,ind,men,men_1ind,men_5ind,men_coll,men_fmp,men_mais,men_pauv,men_prop,men_surf"
+    )
     subprocess.run(params)
 
     # inc
@@ -65,10 +81,8 @@ def tuilage(year, geo, a, crs, x, y):
     subprocess.run(params)
 
 
-
-
-#for year in [2019, 2017, 2015]:
-for a in [1, 2, 5, 10, 20, 50, 100, 200, 500]:
-    tuilage(2019, "met", a, "3035", 0, 0)
- #       tuilage(year, "reun", a, "2975", 300000, 7600000)
- #       tuilage(year, "mart", a, "5490", 600000, 1500000)
+for year in [2019, 2017, 2015]:
+    for a in [1, 2, 5, 10, 20, 50, 100, 200, 500]:
+        tuilage(year, "met", a, "3035", 3200000, 2000000)
+        tuilage(year, "reun", a, "2975", 300000, 7600000)
+        tuilage(year, "mart", a, "5490", 600000, 1500000)
