@@ -74,7 +74,7 @@ def tuilage(year, geo, a, crs, x, y):
     )
     subprocess.run(params)
 
-    # inc
+    # population et revenus
     params = getParams(year, geo, a, 256, crs, x, y, 2, "inc")
     params.append("-s")
     params.append("id,imputed,ind,ind_snv")

@@ -32,8 +32,7 @@ Le script d'harmonisation `harmonise.py`, en Python, est [**ICI**](/src/harmonis
 
 Le script `tuilage.py` [**ICI**](/src/tuilage.py) formate les données (filtrage, transformation, tuilage). Le programme [GridTiler](https://github.com/eurostat/gridtiler#installation) doit être installé.
 
+Les données sont groupées par thème: Population et niveau de vie, population par âge, logements, ménages.
 
-
-Les données finales sont produites dans le répertoire `out/` et peuvent être utilisées directement dans [GridViz](https://github.com/eurostat/gridviz/). Par exemple, pour visualiser la grille de 2019 à 200m
-https://raw.githubusercontent.com/jgaffuri/tiled-grid-france-filosofi/main/out/csv/ind/2019/met/2000m/info.json
+Les données finales sont produites dans le répertoire `out/` et peuvent être utilisées directement dans [GridViz](https://github.com/eurostat/gridviz/). Par exemple, pour visualiser la grille à 1000m des données de population par âge se France métropolitaine, utiliser: https://raw.githubusercontent.com/jgaffuri/tiled-grid-france-filosofi/main/out/csv/ind/2019/met/1000m/info.json
 
