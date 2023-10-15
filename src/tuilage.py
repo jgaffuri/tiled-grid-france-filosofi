@@ -29,8 +29,8 @@ def getParams(year, geo, a, t, crs, x, y, rounding, outFolder):
         str(a),
         "-o",
         "./out/csv/"
-        + "/"
         + geo
+        + "/"
         + outFolder
         + "/"
         + str(year)
