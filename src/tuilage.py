@@ -21,7 +21,7 @@ def getParams(year, geo, a, t, crs, x, y, outFolder):
         "-y",
         y,
         "-p",
-        "const a = c.grd_id.split('N')[1].split('E'); return { x:a[1],y:a[0] };",
+        "const a = c.id.split('N')[1].split('E'); return { x:a[1],y:a[0] };",
         "-m",
         "delete c.id",
         "-a",
@@ -36,7 +36,7 @@ def getParams(year, geo, a, t, crs, x, y, outFolder):
 
 
 def tuilage(year, geo, a, t, crs, x, y):
-    print(year + " " + geo + " " + str(a * 200) + "m")
+    print("*** " + year + " " + geo + " " + str(a * 200) + "m")
 
     # ind
     params = getParams(year, geo, a, t, crs, x, y, "ind")
@@ -60,4 +60,6 @@ def tuilage(year, geo, a, t, crs, x, y):
 
 
 for a in [1, 2, 5, 10, 20, 50, 100, 200, 500]:
-    tuilage("2019", "met", a, "128", "3035", "0", "0")
+    #tuilage("2019", "met", a, "128", "3035", "0", "0")
+    tuilage("2019", "reun", a, "128", "2975", "300000", "7600000")
+    #tuilage("2019", "mart", a, "128", "5490", "0", "0")
