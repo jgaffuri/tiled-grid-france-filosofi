@@ -2,6 +2,10 @@ import subprocess
 
 # /home/juju/pythonvenvgridDE/bin/python ./src/tuilage.py /usr/bin/python3 /home/juju/workspace/tiled-grid-germany-zensus2011/src/tuilage.py
 
+# increase javascript heap size
+# export NODE_OPTIONS="--max-old-space-size=16384"
+# subprocess.run(['export NODE_OPTIONS="--max-old-space-size=16384"'])
+
 
 def getParams(year, geo, a, t, crs, x, y, outFolder):
     return [
@@ -36,8 +40,8 @@ def tuilage(year, geo, a, t, crs, x, y):
 
     # ind
     params = getParams(year, geo, a, t, crs, x, y, "ind")
-    params.push("-s")
-    params.push("id,imputed,ind,ind_0_3,ind_11_17,ind_18_24,ind_25_39,ind_40_54,ind_4_5,ind_55_64,ind_65_79,ind_6_10,ind_80p,ind_inc")
+    params.append("-s")
+    params.append("id,imputed,ind,ind_0_3,ind_11_17,ind_18_24,ind_25_39,ind_40_54,ind_4_5,ind_55_64,ind_65_79,ind_6_10,ind_80p,ind_inc")
     subprocess.run(params)
 
     # log
@@ -56,4 +60,4 @@ def tuilage(year, geo, a, t, crs, x, y):
 
 
 for a in [1, 2, 5, 10, 20, 50, 100, 200, 500]:
-    tuilage("2019", "met", a, 128, "3035", 0, 0)
+    tuilage("2019", "met", a, "128", "3035", "0", "0")
