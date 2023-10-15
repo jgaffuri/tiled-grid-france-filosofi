@@ -30,4 +30,4 @@ Le script d'harmonisation, en Pyhon, est [**ICI**](/src/harmonise.py).
 
 ## Tuilage
 
-Le script `tuilage.py` formate les données (filtrage, transormation, tuilage). Le programme [GridTiler](https://github.com/eurostat/gridtiler#installation) doit être installée. Les données finales sont produites dans le répertoire `out/`.
+Le script `tuilage.py` [**ICI**](/src/tuilage.py) formate les données (filtrage, transormation, tuilage). Le programme [GridTiler](https://github.com/eurostat/gridtiler#installation) doit être installé. Les données finales sont produites dans le répertoire `out/` et peuvent être utilisées directement dans [GridViz](https://github.com/eurostat/gridviz/).
