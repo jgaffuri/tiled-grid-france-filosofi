@@ -22,7 +22,8 @@ def prepare2017(geo, printfinal):
     print("Change noms colonnes en lettres minuscules")
     df.columns = df.columns.str.lower()
 
-#ordonne les colonnes par ordre alphabetique
+    print("Classe colonnes par ordre alphabétique")
+    df = df.reindex(sorted(df.columns), axis=1)
 
     if(printfinal): print(df)
 
@@ -33,7 +34,9 @@ def prepare2017(geo, printfinal):
     print("Fait - 2017 " + geo)
 
 
-prepare2017("reun", True)
+prepare2017("reun", False)
+prepare2017("mart", False)
+prepare2017("met", False)
 
 
 # prepare les données de 2019
@@ -48,6 +51,12 @@ def prepare2019(geo, printfinal):
     print("Renomme colonne id")
     df = df.rename(columns={"idcar_200m": "id"})
 
+    print("Change noms colonnes en lettres minuscules")
+    df.columns = df.columns.str.lower()
+
+    print("Classe colonnes par ordre alphabétique")
+    df = df.reindex(sorted(df.columns), axis=1)
+
     if(printfinal): print(df)
 
     print("Sauvegarde")
@@ -57,8 +66,8 @@ def prepare2019(geo, printfinal):
     print("Fait - 2019 " + geo)
 
 
-#prepare2019("reun", False)
-#prepare2019("mart", False)
-#prepare2019("met", False)
+prepare2019("reun", False)
+prepare2019("mart", False)
+prepare2019("met", False)
 
 
