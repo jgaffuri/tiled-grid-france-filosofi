@@ -17,9 +17,9 @@ def getParams(year, geo, a, t, crs, x, y, outFolder):
         "-c",
         crs,
         "-x",
-        x,
+        str(x),
         "-y",
-        y,
+        str(y),
         "-p",
         "const a = c.id.split('N')[1].split('E'); return { x:a[1],y:a[0] };",
         "-m",
@@ -35,31 +35,37 @@ def getParams(year, geo, a, t, crs, x, y, outFolder):
     ]
 
 
-def tuilage(year, geo, a, t, crs, x, y):
+def tuilage(year, geo, a, crs, x, y):
     print("*** " + year + " " + geo + " " + str(a * 200) + "m")
 
     # ind
-    params = getParams(year, geo, a, t, crs, x, y, "ind")
+    params = getParams(year, geo, a, 128, crs, x, y, "ind")
     params.append("-s")
     params.append("id,imputed,ind,ind_0_3,ind_11_17,ind_18_24,ind_25_39,ind_40_54,ind_4_5,ind_55_64,ind_65_79,ind_6_10,ind_80p,ind_inc")
     subprocess.run(params)
 
     # log
-    # id,imputed,ind,
-    # log_45_70,log_70_90,log_ap90,log_av45,log_inc,log_soc
+    params = getParams(year, geo, a, 128, crs, x, y, "log")
+    params.append("-s")
+    params.append("id,imputed,ind,log_45_70,log_70_90,log_ap90,log_av45,log_inc,log_soc")
+    subprocess.run(params)
 
     # men
-    # id,imputed,ind,
-    # men,men_1ind,men_5ind,men_coll,men_fmp,men_mais,men_pauv,men_prop,men_surf
+    params = getParams(year, geo, a, 128, crs, x, y, "men")
+    params.append("-s")
+    params.append("id,imputed,ind,men,men_1ind,men_5ind,men_coll,men_fmp,men_mais,men_pauv,men_prop,men_surf")
+    subprocess.run(params)
 
-    # pop_inc
-    # id,imputed,ind,
-    # ind_snv,
+    # inc
+    params = getParams(year, geo, a, 256, crs, x, y, "inc")
+    params.append("-s")
+    params.append("id,imputed,ind,ind_snv")
+    subprocess.run(params)
 
 
 
 
 for a in [1, 2, 5, 10, 20, 50, 100, 200, 500]:
-    #tuilage("2019", "met", a, "128", "3035", "0", "0")
-    tuilage("2019", "reun", a, "128", "2975", "300000", "7600000")
-    #tuilage("2019", "mart", a, "128", "5490", "0", "0")
+    #tuilage("2019", "met", a, "3035", 0, 0)
+    tuilage("2019", "reun", a, "2975", 300000, 7600000)
+    #tuilage("2019", "mart", a, "5490", 0, 0)
