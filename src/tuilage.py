@@ -85,8 +85,8 @@ def tuilage(year, geo, a, crs, x, y):
 for year in [2019, 2017, 2015]:
     for a in [1, 2, 5, 10, 20, 50, 100, 200, 500]:
         # reunion
-        tuilage(year, "reun", a, "2975", 300000, 7600000)
+        #tuilage(year, "reun", a, "2975", 300000, 7600000)
         # martinique
-        tuilage(year, "mart", a, "5490", 600000, 1500000)
+        #tuilage(year, "mart", a, "5490", 600000, 1500000)
         # metropole
-        #tuilage(year, "met", a, "3035", 3200000, 2000000)
+        tuilage(year, "met", a, "3035", 3200000, 2000000)
