@@ -78,9 +78,13 @@ def tuilage(year, geo, a, rounding, theme):
     )
 
 
+# increase nodejs memory
+subprocess.run(['export NODE_OPTIONS="--max-old-space-size=16384"'])
+
 # lance le tuilage pour tous les territoires geographiques, toutes les années, tous les thèmes et toutes les résolution
 
-for geo in ["reun", "mart", "met"]:
+#for geo in ["reun", "mart", "met"]:
+for geo in ["met"]:
     for year in [2019, 2017, 2015]:
         for theme in ["ind", "log", "men", "inc"]:
             #for a in [1, 2, 3, 5, 10, 25, 50, 100, 250, 500]:
