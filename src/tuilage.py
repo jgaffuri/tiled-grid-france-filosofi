@@ -86,4 +86,4 @@ for geo in ["reun", "mart", "met"]:
             #for a in [1, 2, 3, 5, 10, 25, 50, 100, 250, 500]:
             for a in [3]:
                 print("*** " + geo + " " + str(year) + " " + theme + " " + str(a*200) + "m")
-                tuilage(year, geo, a, 2, ind)
+                tuilage(year, geo, a, 2, theme)
