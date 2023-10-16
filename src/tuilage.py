@@ -2,11 +2,6 @@ import subprocess
 
 # /home/juju/pythonvenvgridDE/bin/python ./src/tuilage.py /usr/bin/python3 /home/juju/workspace/tiled-grid-germany-zensus2011/src/tuilage.py
 
-# increase javascript heap size
-# export NODE_OPTIONS="--max-old-space-size=16384"
-# subprocess.run(['export NODE_OPTIONS="--max-old-space-size=16384"'])
-
-
 def tuilage(year, geo, a, rounding, theme):
     # défini les paramètres du tuilage en fonction du theme
     if theme == "ind":
@@ -78,8 +73,8 @@ def tuilage(year, geo, a, rounding, theme):
     )
 
 
-# increase nodejs memory
-subprocess.run(['export NODE_OPTIONS="--max-old-space-size=16384"'])
+# increase nodejs javascript heap size
+# export NODE_OPTIONS="--max-old-space-size=16384"
 
 # lance le tuilage pour tous les territoires geographiques, toutes les années, tous les thèmes et toutes les résolution
 
