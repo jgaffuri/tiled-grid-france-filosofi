@@ -36,6 +36,8 @@ Les données sont groupées par thème: Population et niveau de vie, population 
 
 Les données tuilées finales sont produites dans le répertoire `out/` et peuvent être utilisées directement dans [GridViz](https://github.com/eurostat/gridviz/).
 
+Note: Pour exécuter le script de tuilage, il est nécessaire d'augmenter la taille mémoire de nodeJS en exécutant l'instruction export `NODE_OPTIONS="--max-old-space-size=16384"`.
+
 ## Visualisation avec GridViz
 
 Par exemple, pour visualiser la grille à 1000m des données de population par âge se France métropolitaine, utiliser: https://raw.githubusercontent.com/jgaffuri/tiled-grid-france-filosofi/main/out/csv/met/ind/2019/1000m/info.json

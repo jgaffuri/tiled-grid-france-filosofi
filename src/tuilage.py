@@ -73,8 +73,9 @@ def tuilage(year, geo, a, rounding, theme):
     )
 
 
-# increase nodejs javascript heap size
+# augmente la taille mémoire utilisable par javascript / nodejs
 # export NODE_OPTIONS="--max-old-space-size=16384"
+
 
 # lance le tuilage pour tous les territoires geographiques, toutes les années, tous les thèmes et toutes les résolution
 
