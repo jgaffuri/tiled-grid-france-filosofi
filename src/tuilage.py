@@ -83,6 +83,7 @@ def tuilage(year, geo, a, rounding, ind):
 for geo in ["reun", "mart", "met"]:
     for year in [2019, 2017, 2015]:
         for ind in ["ind", "log", "men", "inc"]:
-            for a in [1, 2, 5, 10, 25, 50, 100, 250, 500]:
+            #for a in [1, 2, 3, 5, 10, 25, 50, 100, 250, 500]:
+            for a in [3]:
                 print("*** " + geo + " " + year + " " + ind + " " + a)
                 tuilage(year, geo, a, 2, ind)
