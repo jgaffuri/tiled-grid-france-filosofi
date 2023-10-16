@@ -1,5 +1,5 @@
 # tiled-grid-insee-filisofi
-Preparation des statistiques carroyées INSEE-FR Filosofi pour une visualisation avec [GridViz](https://github.com/eurostat/gridviz/).
+Preparation des statistiques carroyées [INSEE](https://www.insee.fr) Filosofi pour une visualisation avec [GridViz](https://github.com/eurostat/gridviz/).
 
 ## Données en entrée
 
