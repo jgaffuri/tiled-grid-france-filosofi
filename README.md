@@ -10,9 +10,9 @@ Les données Filosofi en entrée sont téléchargeables depuis le site de l'INSE
 
 Il y a un fichier pour la france métropolitaine (*met*), un pour le Réunion (*reun*) et un pour la Martinique (*mart*).
 
-## Harmonisation
+Les fichiers téléchargés doivent tout d'abord être décompressés et renommés pour suivre le même modèle de nom: Par exemple *2019_reun.csv* pour les données de 2019 sur la réunion. Ces fichiers doivent être placés dans un répertoire `input/` pour pouvoir être ensuite traités automatiquement.
 
-Les fichiers téléchargés doivent tout d'abord être décompressés et renommés pour suivre le même modèle de nom: Par exemple *2019_reun.csv* pour les données de 2019 sur la réunion. Ces fichiers doivent être placés dans un répertoire *input/* à la racine du projet pour pouvoir être ensuite traités automatiquement.
+## Harmonisation
 
 Malheureusement, ces fichers CSV n'ont pas les mêmes structures et doivent être harmonisés.
 
@@ -26,20 +26,20 @@ Les autre colonnes ne sont pas utilisées et peuvent être supprimées:
 - Pour 2017: *Idcar_1km, Idcar_nat, I_est_1km, lcog_geo, Groupe*
 - Pour 2015: *Id_carr1km, Id_carr_n, Groupe, Depcom, I_pauv, Id_car2010, I_est_1km*
 
-Le script d'harmonisation `harmonise.py`, en Python, est [**ICI**](/src/harmonise.py).
+Le script d'harmonisation `harmonise.py`, en Python, est [**ICI**](/src/harmonise.py). Il produit de nouveaux fichiers harmonisés dans un répertoire `tmp/`.
 
 ## Tuilage
 
-Le script `tuilage.py` [**ICI**](/src/tuilage.py) formate les données (filtrage, transformation, tuilage). Le programme [GridTiler](https://github.com/eurostat/gridtiler#installation) doit être installé.
+Le script `tuilage.py` [**ICI**](/src/tuilage.py) formate les données harmonisées (filtrage, transformation, tuilage). Le programme [GridTiler](https://github.com/eurostat/gridtiler#installation) doit être installé au préalable.
 
 Les données sont groupées par thème: Population et niveau de vie, population par âge, logements, ménages.
 
 Les données tuilées finales sont produites dans le répertoire `out/` et peuvent être utilisées directement dans [GridViz](https://github.com/eurostat/gridviz/).
 
-Note: Pour exécuter le script de tuilage, il est nécessaire d'augmenter la taille mémoire de nodeJS en exécutant l'instruction export `NODE_OPTIONS="--max-old-space-size=16384"`.
+Note: Pour exécuter le script de tuilage, il peut être nécessaire d'augmenter la taille mémoire de nodeJS en exécutant l'instruction `export NODE_OPTIONS="--max-old-space-size=16384"`.
 
 ## Visualisation avec GridViz
 
-Par exemple, pour visualiser la grille à 1000m des données de population par âge se France métropolitaine, utiliser: https://raw.githubusercontent.com/jgaffuri/tiled-grid-france-filosofi/main/out/csv/met/ind/2019/1000m/info.json
+Par exemple, pour visualiser la grille à 1000m des données de population par âge se France métropolitaine, utiliser l'URL: https://raw.githubusercontent.com/jgaffuri/tiled-grid-france-filosofi/main/out/csv/met/ind/2019/1000m/info.json
 
-Voir des exemples de visualisation [GridViz](https://github.com/eurostat/gridviz/) [**ICI**](https://eurostat.github.io/gridviz/examples/FR.html). 
+Voir des exemples de visualisation [GridViz](https://github.com/eurostat/gridviz/) [**ICI**](https://eurostat.github.io/gridviz/examples/FR.html) et [**LA**](https://eurostat.github.io/gridviz/examples/FR_pop.html). 
