@@ -1,9 +1,9 @@
 # tiled-grid-insee-filisofi
-Preparation des statistiques carroyées INSEE-FR FILOSOFI pour une visualisation avec [GridViz](https://github.com/eurostat/gridviz/).
+Preparation des statistiques carroyées INSEE-FR Filosofi pour une visualisation avec [GridViz](https://github.com/eurostat/gridviz/).
 
 ## Données en entrée
 
-Les données peuvent être téléchargées depuis le site de l'INSEE, par année:
+Les données Filosofi en entrée sont téléchargeables depuis le site de l'INSEE, par année:
 - 2015: https://www.insee.fr/fr/statistiques/4176290
 - 2017: https://www.insee.fr/fr/statistiques/6215217
 - 2019: https://www.insee.fr/fr/statistiques/7655515
