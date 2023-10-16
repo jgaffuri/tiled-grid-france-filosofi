@@ -7,18 +7,18 @@ import subprocess
 # subprocess.run(['export NODE_OPTIONS="--max-old-space-size=16384"'])
 
 
-def tuilage(year, geo, a, rounding, ind):
-    # défini les paramètres du tuilage en fonction de l'indicateur
-    if ind == "ind":
+def tuilage(year, geo, a, rounding, theme):
+    # défini les paramètres du tuilage en fonction du theme
+    if theme == "ind":
         t = 128
         cols = "id,imputed,ind,ind_0_3,ind_11_17,ind_18_24,ind_25_39,ind_40_54,ind_4_5,ind_55_64,ind_65_79,ind_6_10,ind_80p,ind_inc"
-    elif ind == "log":
+    elif theme == "log":
         t = 128
         cols = "id,imputed,ind,log_45_70,log_70_90,log_ap90,log_av45,log_inc,log_soc"
-    elif ind == "men":
+    elif theme == "men":
         t = 128
         cols = "id,imputed,ind,men,men_1ind,men_5ind,men_coll,men_fmp,men_mais,men_pauv,men_prop,men_surf"
-    elif ind == "inc":
+    elif theme == "inc":
         t = 256
         cols = "id,imputed,ind,ind_snv"
 
@@ -60,7 +60,7 @@ def tuilage(year, geo, a, rounding, ind):
             "./out/csv/"
             + geo
             + "/"
-            + ind
+            + theme
             + "/"
             + str(year)
             + "/"
@@ -78,12 +78,12 @@ def tuilage(year, geo, a, rounding, ind):
     )
 
 
-# lance le tuilage pour tous les territoires geographiques, toutes les années, tous les indicateurs et toutes les résolution
+# lance le tuilage pour tous les territoires geographiques, toutes les années, tous les thèmes et toutes les résolution
 
 for geo in ["reun", "mart", "met"]:
     for year in [2019, 2017, 2015]:
-        for ind in ["ind", "log", "men", "inc"]:
+        for theme in ["ind", "log", "men", "inc"]:
             #for a in [1, 2, 3, 5, 10, 25, 50, 100, 250, 500]:
             for a in [3]:
-                print("*** " + geo + " " + year + " " + ind + " " + a)
+                print("*** " + geo + " " + str(year) + " " + theme + " " + str(a*200) + "m")
                 tuilage(year, geo, a, 2, ind)
