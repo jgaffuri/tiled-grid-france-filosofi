@@ -34,4 +34,10 @@ Le script `tuilage.py` [**ICI**](/src/tuilage.py) formate les données (filtrage
 
 Les données sont groupées par thème: Population et niveau de vie, population par âge, logements, ménages.
 
-Les données finales sont produites dans le répertoire `out/` et peuvent être utilisées directement dans [GridViz](https://github.com/eurostat/gridviz/). Par exemple, pour visualiser la grille à 1000m des données de population par âge se France métropolitaine, utiliser: https://raw.githubusercontent.com/jgaffuri/tiled-grid-france-filosofi/main/out/csv/met/ind/2019/1000m/info.json
+Les données tuilées finales sont produites dans le répertoire `out/` et peuvent être utilisées directement dans [GridViz](https://github.com/eurostat/gridviz/).
+
+## Visualisation avec GridViz
+
+Par exemple, pour visualiser la grille à 1000m des données de population par âge se France métropolitaine, utiliser: https://raw.githubusercontent.com/jgaffuri/tiled-grid-france-filosofi/main/out/csv/met/ind/2019/1000m/info.json
+
+Voir des exemples de visualisation [GridViz](https://github.com/eurostat/gridviz/) [**ICI**](https://eurostat.github.io/gridviz/examples/FR.html). 
