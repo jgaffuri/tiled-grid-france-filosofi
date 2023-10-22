@@ -25,12 +25,24 @@ def jointure(geo, printfinal=False):
     return d
 
 
-# préparation des données des séries temporelles, par région
+
+
+
+
+
+
+# Préparation des données des séries temporelles, par région
 for geo in ["reun", "mart", "met"]:
     print("*** Jointure " + geo)
     d = jointure(geo)
     # Sauvegarde
     d.to_csv("./tmp/ts_pop_" + geo + ".csv", index=False)
+
+
+
+
+
+
 
 
 # Tuilage, via gridtiler
