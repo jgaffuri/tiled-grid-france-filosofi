@@ -26,7 +26,8 @@ def jointure(geo, col, printfinal=False):
 
 
 # Préparation des données des séries temporelles, par région
-for col in ["ind", "ind_snv"]:
+for col in []:
+#for col in ["ind", "ind_snv"]:
     for geo in ["reun", "mart", "met"]:
         print("*** Jointure " + col + " " + geo)
         d = jointure(geo, col)
@@ -35,9 +36,9 @@ for col in ["ind", "ind_snv"]:
 
 
 # Tuilage, via gridtiler
-for col in ["ind_snv", "ind"]:
-    #for geo in []:
-    for geo in ["reun", "mart", "met"]:
+#for geo in []:
+for geo in ["reun", "mart", "met"]:
+    for col in ["ind_snv", "ind"]:
         t = 128
         rounding = 2
 
