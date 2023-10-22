@@ -5,49 +5,37 @@ import subprocess
 
 
 # Charge fichier par année et extrait les données pour la séries temporelle
-def extraction(year, geo, printfinal=False):
+def extraction(year, geo, col, printfinal=False):
     print("charge " + year + " " + geo)
     d = pd.read_csv("./tmp/" + year + "_" + geo + ".csv")
-    d = d[["id", "ind", "imputed"]]
-    d = d.rename(columns={"ind": "ind" + year, "imputed": "imp" + year})
+    d = d[["id", col, "imputed"]]
+    d = d.rename(columns={col: col + year, "imputed": "imp" + year})
     if printfinal:
         print(d)
     return d
 
 
 # construction des séries temporelles par jointure des données annuelles
-def jointure(geo, printfinal=False):
-    d = extraction("2015", geo)
-    d = pd.merge(d, extraction("2017", geo), on="id", how="outer")
-    d = pd.merge(d, extraction("2019", geo), on="id", how="outer")
+def jointure(geo, col, printfinal=False):
+    d = extraction("2015", geo, col)
+    d = pd.merge(d, extraction("2017", geo, col), on="id", how="outer")
+    d = pd.merge(d, extraction("2019", geo, col), on="id", how="outer")
     if printfinal:
         print(d)
     return d
 
 
-
-
-
-
-
-
 # Préparation des données des séries temporelles, par région
+col = "ind"
 for geo in ["reun", "mart", "met"]:
     print("*** Jointure " + geo)
-    d = jointure(geo)
+    d = jointure(geo, col)
     # Sauvegarde
-    d.to_csv("./tmp/ts_pop_" + geo + ".csv", index=False)
-
-
-
-
-
-
+    d.to_csv("./tmp/ts_" + col + "_" + geo + ".csv", index=False)
 
 
 # Tuilage, via gridtiler
 for geo in ["reun", "mart", "met"]:
-    theme = "ts_pop"
     t = 128
     rounding = 2
 
@@ -72,7 +60,7 @@ for geo in ["reun", "mart", "met"]:
             [
                 "gridtiler",
                 "-i",
-                "./tmp/" + theme + "_" + geo + ".csv",
+                "./tmp/ts_" + col + "_" + geo + ".csv",
                 "-r",
                 "200",
                 "-c",
@@ -88,7 +76,7 @@ for geo in ["reun", "mart", "met"]:
                 "-a",
                 str(a),
                 "-o",
-                "./out/csv/" + geo + "/" + theme + "/" + str(a * 200) + "m/",
+                "./out/csv/" + geo + "/ts_" + col + "/" + str(a * 200) + "m/",
                 "-t",
                 str(t),
                 "-R",
