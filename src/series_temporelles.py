@@ -35,9 +35,9 @@ for col in ["ind", "ind_snv"]:
 
 
 # Tuilage, via gridtiler
-for col in ["ind", "ind_snv"]:
-    for geo in []:
-    #for geo in ["reun", "mart", "met"]:
+for col in ["ind_snv", "ind"]:
+    #for geo in []:
+    for geo in ["reun", "mart", "met"]:
         t = 128
         rounding = 2
 
