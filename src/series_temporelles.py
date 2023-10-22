@@ -26,8 +26,54 @@ def join(geo, printfinal=False):
     return d
 
 
+# Prepare data for time series
 for geo in ["reun", "mart", "met"]:
     print("*** Join " + geo)
     d = join(geo)
     # Save
     d.to_csv("./tmp/ts_pop_" + geo + ".csv", index=False)
+
+
+
+    # execute tuilage, via gridtiler
+    subprocess.run(
+        [
+            "gridtiler",
+            "-i",
+            "./tmp/" + str(year) + "_" + geo + ".csv",
+            "-r",
+            "200",
+            "-c",
+            crs,
+            "-x",
+            str(x),
+            "-y",
+            str(y),
+            "-p",
+            "const a = c.id.split('N')[1].split('E'); return { x:a[1],y:a[0] };",
+            "-m",
+            "delete c.id",
+            "-a",
+            str(a),
+            "-o",
+            "./out/csv/"
+            + geo
+            + "/"
+            + theme
+            + "/"
+            + str(year)
+            + "/"
+            + str(a * 200)
+            + "m/",
+            "-t",
+            str(t),
+            "-s",
+            cols,
+            "-R",
+            str(rounding),
+            "-e",
+            "csv",
+        ]
+    )
+
+
