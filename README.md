@@ -38,6 +38,10 @@ Les données tuilées finales sont produites dans le répertoire `out/` et peuve
 
 Note: Pour exécuter le script de tuilage, il peut être nécessaire d'augmenter la taille mémoire de nodeJS en exécutant l'instruction `export NODE_OPTIONS="--max-old-space-size=16384"`.
 
+## Séries temporelles
+
+Le script `series_temporelles.py` [**ICI**](/src/series_temporelles.py) joint les données harmonisées pour construire des fichiers de séries temporelles sur les trois années 2015, 2017 et 2019. Les données tuilées finales sont produites dans le répertoire `out/`.
+
 ## Visualisation avec GridViz
 
 Par exemple, pour visualiser la grille à 1000m des données de population par âge se France métropolitaine, utiliser l'URL: https://raw.githubusercontent.com/jgaffuri/tiled-grid-france-filosofi/main/out/csv/met/ind/2019/1000m/info.json
