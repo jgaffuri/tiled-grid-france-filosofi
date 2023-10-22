@@ -1,10 +1,12 @@
 import pandas as pd
 
+# /home/juju/pythonvenvgridDE/bin/python ./src/join.py /usr/bin/python3 /home/juju/workspace/tiled-grid-france-filosofi/src/join.py
 
 # read
-d19 = pd.read_csv('2019_met.csv')
-d17 = pd.read_csv('2017_met.csv')
-d15 = pd.read_csv('2015_met.csv')
+geo = "met"
+d19 = pd.read_csv("./tmp/2019_" + geo + ".csv")
+d17 = pd.read_csv("./tmp/2017_" + geo + ".csv")
+d15 = pd.read_csv("./tmp/2015_" + geo + ".csv")
 
 
 
