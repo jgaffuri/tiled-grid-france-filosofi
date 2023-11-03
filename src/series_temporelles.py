@@ -5,7 +5,7 @@ import subprocess
 
 
 # Charge fichier par année et extrait les données pour la séries temporelle
-def extraction(year, geo, cols, renameFun printfinal=False):
+def extraction(year, geo, cols, renameFun, printfinal=False):
     print("charge " + year + " " + geo)
     d = pd.read_csv("./tmp/" + year + "_" + geo + ".csv")
     d = d[cols]
@@ -15,12 +15,11 @@ def extraction(year, geo, cols, renameFun printfinal=False):
     return d
 
 
-
 #
-def jointure(geo, code, cols, printfinal=False):
-    d = extraction("2015", geo, cols)
-    d = pd.merge(d, extraction("2017", geo, cols), on="id", how="outer")
-    d = pd.merge(d, extraction("2019", geo, cols), on="id", how="outer")
+def jointure(geo, code, cols, renameFun, printfinal=False):
+    d = extraction("2015", geo, cols, renameFun)
+    d = pd.merge(d, extraction("2017", geo, cols, renameFun), on="id", how="outer")
+    d = pd.merge(d, extraction("2019", geo, cols, renameFun), on="id", how="outer")
     if printfinal:
         print(d)
     # Sauvegarde
@@ -30,14 +29,24 @@ def jointure(geo, code, cols, printfinal=False):
 # Préparation des données des séries temporelles, par région
 for geo in ["reun", "mart", "met"]:
     print("*** Jointure ind " + geo)
-    jointure(geo, "ind", ["id", "ind", "imputed"], lambda year: {"ind": "ind" + year, "imputed": "imp" + year})
+    jointure(
+        geo,
+        "ind",
+        ["id", "ind", "imputed"],
+        lambda year: {"ind": "ind" + year, "imputed": "imp" + year},
+    )
     print("*** Jointure ind_snv " + geo)
-    jointure(geo, "ind", ["id", "ind", "ind_snv"], lambda year: {"ind": "ind" + year, "ind_snv": "ind_snv" + year})
+    jointure(
+        geo,
+        "ind",
+        ["id", "ind", "ind_snv"],
+        lambda year: {"ind": "ind" + year, "ind_snv": "ind_snv" + year},
+    )
 
 
 # Tuilage, via gridtiler
-# for geo in []:
-for geo in ["reun", "mart", "met"]:
+for geo in []:
+    # for geo in ["reun", "mart", "met"]:
     for col in ["ind_snv", "ind"]:
         t = 128
         rounding = 2
