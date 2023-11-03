@@ -38,7 +38,7 @@ for geo in ["reun", "mart", "met"]:
     print("*** Jointure ind_snv " + geo)
     jointure(
         geo,
-        "ind",
+        "ind_snv",
         ["id", "ind", "ind_snv"],
         lambda year: {"ind": "ind" + year, "ind_snv": "ind_snv" + year},
     )
