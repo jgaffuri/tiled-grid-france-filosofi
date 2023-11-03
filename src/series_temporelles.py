@@ -5,38 +5,29 @@ import subprocess
 
 
 # Charge fichier par année et extrait les données pour la séries temporelle
-def extraction(year, geo, col, printfinal=False):
+def extraction(year, geo, cols, printfinal=False):
     print("charge " + year + " " + geo)
     d = pd.read_csv("./tmp/" + year + "_" + geo + ".csv")
-    d = d[["id", col, "imputed"]]
+    d = d[cols]
     d = d.rename(columns={col: col + year, "imputed": "imp" + year})
     if printfinal:
         print(d)
     return d
 
 
-# construction des séries temporelles par jointure des données annuelles
-def jointure(geo, col, printfinal=False):
-    d = extraction("2015", geo, col)
-    d = pd.merge(d, extraction("2017", geo, col), on="id", how="outer")
-    d = pd.merge(d, extraction("2019", geo, col), on="id", how="outer")
-    if printfinal:
-        print(d)
-    return d
-
-
 # Préparation des données des séries temporelles, par région
-for col in []:
-#for col in ["ind", "ind_snv"]:
-    for geo in ["reun", "mart", "met"]:
-        print("*** Jointure " + col + " " + geo)
-        d = jointure(geo, col)
-        # Sauvegarde
-        d.to_csv("./tmp/ts_" + col + "_" + geo + ".csv", index=False)
+for geo in ["reun", "mart", "met"]:
+    print("*** Jointure ind " + geo)
+    cols = ["id", "ind", "imputed"]
+    d = extraction("2015", geo, cols)
+    d = pd.merge(d, extraction("2017", geo, cols), on="id", how="outer")
+    d = pd.merge(d, extraction("2019", geo, cols), on="id", how="outer")
+    # Sauvegarde
+    d.to_csv("./tmp/ts_ind_" + geo + ".csv", index=False)
 
 
 # Tuilage, via gridtiler
-#for geo in []:
+# for geo in []:
 for geo in ["reun", "mart", "met"]:
     for col in ["ind_snv", "ind"]:
         t = 128
