@@ -46,4 +46,4 @@ Le script `series_temporelles.py` [**ICI**](/src/series_temporelles.py) joint le
 
 Par exemple, pour visualiser la grille à 1000m des données de population par âge se France métropolitaine, utiliser l'URL: https://raw.githubusercontent.com/jgaffuri/tiled-grid-france-filosofi/main/out/csv/met/ind/2019/1000m/info.json
 
-Voir des exemples de visualisation [GridViz](https://github.com/eurostat/gridviz/) [**ICI**](https://eurostat.github.io/gridviz/examples/FR.html) et [**LA**](https://eurostat.github.io/gridviz/examples/FR_pop.html). 
+Voir des exemples de visualisation [GridViz](https://github.com/eurostat/gridviz/) [**ICI**](https://eurostat.github.io/gridviz/examples/FR.html), [**LA**](https://eurostat.github.io/gridviz/examples/FR_pop.html) et [**LA**](https://eurostat.github.io/gridviz/examples/FR_income.html). 
