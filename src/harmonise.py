@@ -30,12 +30,24 @@ def harmonise(year, geo, printfinal):
     print("Classe colonnes par ordre alphabétique")
     df = df.reindex(sorted(df.columns), axis=1)
 
+    print("inspire ID to x,y")
+    def xfun(c):
+        a = c['id'].split("N")[1].split("E")
+        return int(a[1])
+    def yfun(c):
+        a = c['id'].split("N")[1].split("E")
+        return int(a[0])
+    df['x'] = df.apply(xfun, axis=1)
+    df['y'] = df.apply(yfun, axis=1)
+
+    df = df.drop(['id'], axis=1)
+
+
     if(printfinal): print(df)
 
     print("Sauvegarde")
     if not os.path.exists('tmp'): os.makedirs('tmp')
     df.to_csv("tmp/"+year+"_"+geo+".csv", index=False)
-
 
 
 #execute harmonisation function for all years and geo regions
