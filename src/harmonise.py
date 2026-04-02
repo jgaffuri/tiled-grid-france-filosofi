@@ -40,6 +40,6 @@ def harmonise(year, geo, printfinal):
 
 #execute harmonisation function for all years and geo regions
 for geo in ["mart","reun","met"]:
-    for year in ["2015","2017","2019"]:
+    for year in ["2021"]: #["2015","2017","2019","2021"]:
         print("*** "+year+" "+geo)
         harmonise(year, geo, False)
