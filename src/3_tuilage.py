@@ -2,9 +2,7 @@ from pygridmap import gridtiler
 import os
 
 
-# /home/juju/pythonvenvgridDE/bin/python ./src/tuilage.py /usr/bin/python3 /home/juju/workspace/tiled-grid-germany-zensus2011/src/tuilage.py
-
-def process(year, geo, theme):
+def tuilage(year, geo, resolution, theme):
     # défini les paramètres du tuilage en fonction du theme
     if theme == "ind":
         t = 128
@@ -35,27 +33,31 @@ def process(year, geo, theme):
         x = 600000
         y = 1500000
 
-    # transformation
+    # transformation par thème
     def cell_transformation_fun(c):
-
-        #extract x and y from grid cell code
-        a = c['id'].split("N")[1].split("E")
-
         for k in list(c.keys()):
             if k not in cols: del c[k]
 
-        c["x"] = int(a[1])
-        c["y"] = int(a[0])
+    input_file = "tmp/" + str(year) + "_" + geo + "_" + resolution + ".csv"
+    out_file = "tmp/" + str(year) + "_" + geo + "_" + resolution + "_" + theme + ".csv"
+    gridtiler.grid_transformation(input_file, cell_transformation_fun, out_file)
 
-
-    print("Transformation")
-    input_file = "tmp/" + str(year) + "_" + geo + ".csv"
-    gridtiler.grid_transformation(input_file, cell_transformation_fun, "tmp/"+ theme+"_"+ str(year) + "_" + geo + "_200.csv")
-
-    # aggregation
-    # for a in [1, 2, 3, 5, 10, 25, 50, 100, 250, 500]:
+    #create output folder
+    #out_folder = 'out/csv/' +geo+ str(resolution)
+    #if not os.path.exists(out_folder): os.makedirs(out_folder)
 
     # tuilage
+    gridtiler.grid_tiling(
+        out_file,
+        "./out/csv/" + geo + "/" + theme + "/" + str(year) + "/" + str(resolution) + "m/",
+        resolution,
+        tile_size_cell = t,
+        x_origin = x,
+        y_origin = y,
+        format = "csv", #"parquet",
+        crs = crs,
+        clean_output_folder = True,
+    )
 
 
 
@@ -82,14 +84,12 @@ def process(year, geo, theme):
 '''
 
 
-# augmente la taille mémoire utilisable par javascript / nodejs
-# export NODE_OPTIONS="--max-old-space-size=16384"
-
 
 # lance le tuilage pour tous les territoires geographiques, toutes les années, tous les thèmes et toutes les résolution
 
-for geo in ["reun", "mart", "met"]:
-    for year in [2021,2019, 2017, 2015]:
-        for theme in ["ind", "log", "men", "inc"]:
-            print("*** " + geo + " " + str(year) + " " + theme)
-            process(year, geo, theme)
+for geo in ["reun", "mart"]: #, "met"]:
+    for year in [2021, 2019, 2017, 2015]:
+        for resolution in [200, 400, 600, 1000, 2000, 5000, 10000, 50000, 100000]:
+            for theme in ["ind", "log", "men", "inc"]:
+                print("*** " + geo + " " + str(year) + " " + theme)
+                tuilage(year, geo, resolution, theme)
