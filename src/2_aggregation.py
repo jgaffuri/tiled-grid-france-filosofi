@@ -1,10 +1,10 @@
 from pygridmap import gridtiler
 
 
-
 for geo in ["mart","reun","met"]:
     for year in ["2015","2017","2019","2021"]:
-        for res in ["200","400","600","1000","2000","5000","10000","20000","50000"]:
+        for a in [2,3,5,10,25,50,100,250,500]:
+            res = int(a*200)
             print("*** "+year+" "+geo+" "+res)
-            gridtiler.grid_aggregation(input_file=aggregated_folder+"1000.csv", resolution=1000, output_file=aggregated_folder+str(a*1000)+".csv", a=a, aggregation_fun=aggregation_fun)
+            gridtiler.grid_aggregation(input_file="tmp/"+year+"_"+geo+"_200.csv", resolution=200, output_file="tmp/"+year+"_"+geo+"_"+str(res)+".csv", a=a)
 
