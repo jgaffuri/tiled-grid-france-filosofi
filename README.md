@@ -7,6 +7,7 @@ Les données Filosofi en entrée sont téléchargeables depuis le site de l'INSE
 - 2015: https://www.insee.fr/fr/statistiques/4176290
 - 2017: https://www.insee.fr/fr/statistiques/6215217
 - 2019: https://www.insee.fr/fr/statistiques/7655515
+- 2021: https://www.insee.fr/fr/statistiques/8735243
 
 Il y a un fichier pour la france métropolitaine (*met*), un pour le Réunion (*reun*) et un pour la Martinique (*mart*).
 
