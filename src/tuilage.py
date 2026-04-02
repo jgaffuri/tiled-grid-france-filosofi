@@ -4,7 +4,7 @@ import os
 
 # /home/juju/pythonvenvgridDE/bin/python ./src/tuilage.py /usr/bin/python3 /home/juju/workspace/tiled-grid-germany-zensus2011/src/tuilage.py
 
-def process(year, geo, a, rounding, theme):
+def process(year, geo, theme):
     # défini les paramètres du tuilage en fonction du theme
     if theme == "ind":
         t = 128
@@ -90,7 +90,7 @@ def process(year, geo, a, rounding, theme):
 # lance le tuilage pour tous les territoires geographiques, toutes les années, tous les thèmes et toutes les résolution
 
 for geo in ["reun", "mart", "met"]:
-    for year in [2019, 2017, 2015]:
+    for year in [2021,2019, 2017, 2015]:
         for theme in ["ind", "log", "men", "inc"]:
             print("*** " + geo + " " + str(year) + " " + theme)
-            process(year, geo, 2, theme)
+            process(year, geo, theme)
