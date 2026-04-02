@@ -51,7 +51,7 @@ def process(year, geo, a, rounding, theme):
 
     print("Transformation")
     input_file = "tmp/" + str(year) + "_" + geo + ".csv"
-    gridtiler.grid_transformation(input_file, cell_transformation_fun, "tmp/" theme+"_"+ str(year) + "_" + geo + "_200.csv")
+    gridtiler.grid_transformation(input_file, cell_transformation_fun, "tmp/"+ theme+"_"+ str(year) + "_" + geo + "_200.csv")
 
     # aggregation
     # for a in [1, 2, 3, 5, 10, 25, 50, 100, 250, 500]:
