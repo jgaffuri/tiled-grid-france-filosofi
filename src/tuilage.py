@@ -8,16 +8,18 @@ def process(year, geo, a, rounding, theme):
     # défini les paramètres du tuilage en fonction du theme
     if theme == "ind":
         t = 128
-        cols = "id,imputed,ind,ind_0_3,ind_11_17,ind_18_24,ind_25_39,ind_40_54,ind_4_5,ind_55_64,ind_65_79,ind_6_10,ind_80p,ind_inc"
+        cols = ["id","imputed","ind","ind_0_3","ind_11_17","ind_18_24","ind_25_39","ind_40_54","ind_4_5","ind_55_64","ind_65_79","ind_6_10","ind_80p","ind_inc"]
     elif theme == "log":
         t = 128
-        cols = "id,imputed,ind,log_45_70,log_70_90,log_ap90,log_av45,log_inc,log_soc"
+        cols = ["id","imputed","ind","log_45_70","log_70_90","log_ap90","log_av45","log_inc","log_soc"]
     elif theme == "men":
         t = 128
-        cols = "id,imputed,ind,men,men_1ind,men_5ind,men_coll,men_fmp,men_mais,men_pauv,men_prop,men_surf"
+        cols = ["id","imputed","ind","men","men_1ind","men_5ind","men_coll","men_fmp","men_mais","men_pauv","men_prop","men_surf"]
     elif theme == "inc":
         t = 256
-        cols = "id,imputed,ind,ind_snv"
+        cols = ["id","imputed","ind","ind_snv"]
+
+    cols = set(cols)
 
     # défini les paramètres du tuilage en fonction du territoire géographique
     if geo == "met":
@@ -34,19 +36,22 @@ def process(year, geo, a, rounding, theme):
         y = 1500000
 
     # transformation
-        def cell_transformation_fun(c):
+    def cell_transformation_fun(c):
 
-            #extract x and y from grid cell code
-            a = c['GRD_ID'].split("N")[1].split("E")
-            c["x"] = int(a[1])
-            c["y"] = int(a[0])
+        #extract x and y from grid cell code
+        a = c['id'].split("N")[1].split("E")
+        c["x"] = int(a[1])
+        c["y"] = int(a[0])
 
-            #delete unecessary data
-            del c['GRD_ID']
-            del c['CNTR_ID']
+        #delete unecessary data
+        del c['id']
+
+        for k in list(c.keys()):
+            if k not in cols: del c[k]
 
     print("Transformation")
-    gridtiler.grid_transformation("assets/pop_5000m.csv", cell_transformation_fun, "tmp/pop_5000.csv")
+    input_file = "tmp/" + str(year) + "_" + geo + ".csv"
+    gridtiler.grid_transformation(input_file, cell_transformation_fun, "tmp/" theme+"_"+ str(year) + "_" + geo + ".csv")
 
 
     # aggregation
