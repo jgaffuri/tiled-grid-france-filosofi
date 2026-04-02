@@ -34,6 +34,7 @@ def tuilage(year, geo, resolution, theme):
         y = 1500000
 
     # transformation par thème
+    # TODO: inclure transformation dans grid_tiling directement
     def cell_transformation_fun(c):
         for k in list(c.keys()):
             if k not in cols: del c[k]
@@ -47,41 +48,18 @@ def tuilage(year, geo, resolution, theme):
     #if not os.path.exists(out_folder): os.makedirs(out_folder)
 
     # tuilage
+    format = "csv" # csv parquet
     gridtiler.grid_tiling(
         out_file,
-        "./out/csv/" + geo + "/" + theme + "/" + str(year) + "/" + str(resolution) + "m/",
+        "./out/"+format+"/" + geo + "/" + theme + "/" + str(year) + "/" + str(resolution) + "m/",
         resolution,
         tile_size_cell = t,
         x_origin = x,
         y_origin = y,
-        format = "csv", #"parquet",
+        format = format,
         crs = crs,
         clean_output_folder = True,
     )
-
-
-
-'''
-    # execute tuilage, via gridtiler
-    subprocess.run(
-        [
-            "gridtiler",
-            "-i", "./tmp/" + str(year) + "_" + geo + ".csv",
-            "-r", "200",
-            "-c", crs,
-            "-x", str(x),
-            "-y", str(y),
-            "-p", "const a = c.id.split('N')[1].split('E'); return { x:a[1],y:a[0] };",
-            "-m", "delete c.id",
-            "-a", str(a),
-            "-o", "./out/csv/" + geo + "/" + theme + "/" + str(year) + "/" + str(a * 200) + "m/",
-            "-t", str(t),
-            "-s", cols,
-            "-R", str(rounding),
-            "-e", "csv",
-        ]
-    )
-'''
 
 
 
