@@ -87,7 +87,7 @@ def tuilage(year, geo, resolution, theme):
 
 # lance le tuilage pour tous les territoires geographiques, toutes les années, tous les thèmes et toutes les résolution
 
-for geo in ["reun", "mart"]: #, "met"]:
+for geo in ["reun", "mart", "met"]:
     for year in [2021, 2019, 2017, 2015]:
         for resolution in [200, 400, 600, 1000, 2000, 5000, 10000, 20000, 50000, 100000]:
             for theme in ["ind", "log", "men", "inc"]:
