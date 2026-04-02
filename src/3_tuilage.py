@@ -38,8 +38,8 @@ def tuilage(year, geo, resolution, theme):
         for k in list(c.keys()):
             if k not in cols: del c[k]
 
-    input_file = "tmp/" + str(year) + "_" + geo + "_" + resolution + ".csv"
-    out_file = "tmp/" + str(year) + "_" + geo + "_" + resolution + "_" + theme + ".csv"
+    input_file = "tmp/" + str(year) + "_" + geo + "_" + str(resolution) + ".csv"
+    out_file = "tmp/" + str(year) + "_" + geo + "_" + str(resolution) + "_" + theme + ".csv"
     gridtiler.grid_transformation(input_file, cell_transformation_fun, out_file)
 
     #create output folder
