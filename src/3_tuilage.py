@@ -6,16 +6,16 @@ def tuilage(year, geo, resolution, theme):
     # défini les paramètres du tuilage en fonction du theme
     if theme == "ind":
         t = 128
-        cols = ["imputed","ind","ind_0_3","ind_11_17","ind_18_24","ind_25_39","ind_40_54","ind_4_5","ind_55_64","ind_65_79","ind_6_10","ind_80p","ind_inc"]
+        cols = ["x","y","imputed","ind","ind_0_3","ind_11_17","ind_18_24","ind_25_39","ind_40_54","ind_4_5","ind_55_64","ind_65_79","ind_6_10","ind_80p","ind_inc"]
     elif theme == "log":
         t = 128
-        cols = ["imputed","ind","log_45_70","log_70_90","log_ap90","log_av45","log_inc","log_soc"]
+        cols = ["x","y","imputed","ind","log_45_70","log_70_90","log_ap90","log_av45","log_inc","log_soc"]
     elif theme == "men":
         t = 128
-        cols = ["imputed","ind","men","men_1ind","men_5ind","men_coll","men_fmp","men_mais","men_pauv","men_prop","men_surf"]
+        cols = ["x","y","imputed","ind","men","men_1ind","men_5ind","men_coll","men_fmp","men_mais","men_pauv","men_prop","men_surf"]
     elif theme == "inc":
         t = 256
-        cols = ["imputed","ind","ind_snv"]
+        cols = ["x","y","imputed","ind","ind_snv"]
 
     cols = set(cols)
 
