@@ -1,8 +1,10 @@
-import subprocess
+from pygridmap import gridtiler
+import os
+
 
 # /home/juju/pythonvenvgridDE/bin/python ./src/tuilage.py /usr/bin/python3 /home/juju/workspace/tiled-grid-germany-zensus2011/src/tuilage.py
 
-def tuilage(year, geo, a, rounding, theme):
+def process(year, geo, a, rounding, theme):
     # défini les paramètres du tuilage en fonction du theme
     if theme == "ind":
         t = 128
@@ -31,46 +33,48 @@ def tuilage(year, geo, a, rounding, theme):
         x = 600000
         y = 1500000
 
+    # transformation
+        def cell_transformation_fun(c):
+
+            #extract x and y from grid cell code
+            a = c['GRD_ID'].split("N")[1].split("E")
+            c["x"] = int(a[1])
+            c["y"] = int(a[0])
+
+            #delete unecessary data
+            del c['GRD_ID']
+            del c['CNTR_ID']
+
+    print("Transformation")
+    gridtiler.grid_transformation("assets/pop_5000m.csv", cell_transformation_fun, "tmp/pop_5000.csv")
+
+
+    # aggregation
+    # tuilage
+
+
+
+'''
     # execute tuilage, via gridtiler
     subprocess.run(
         [
             "gridtiler",
-            "-i",
-            "./tmp/" + str(year) + "_" + geo + ".csv",
-            "-r",
-            "200",
-            "-c",
-            crs,
-            "-x",
-            str(x),
-            "-y",
-            str(y),
-            "-p",
-            "const a = c.id.split('N')[1].split('E'); return { x:a[1],y:a[0] };",
-            "-m",
-            "delete c.id",
-            "-a",
-            str(a),
-            "-o",
-            "./out/csv/"
-            + geo
-            + "/"
-            + theme
-            + "/"
-            + str(year)
-            + "/"
-            + str(a * 200)
-            + "m/",
-            "-t",
-            str(t),
-            "-s",
-            cols,
-            "-R",
-            str(rounding),
-            "-e",
-            "csv",
+            "-i", "./tmp/" + str(year) + "_" + geo + ".csv",
+            "-r", "200",
+            "-c", crs,
+            "-x", str(x),
+            "-y", str(y),
+            "-p", "const a = c.id.split('N')[1].split('E'); return { x:a[1],y:a[0] };",
+            "-m", "delete c.id",
+            "-a", str(a),
+            "-o", "./out/csv/" + geo + "/" + theme + "/" + str(year) + "/" + str(a * 200) + "m/",
+            "-t", str(t),
+            "-s", cols,
+            "-R", str(rounding),
+            "-e", "csv",
         ]
     )
+'''
 
 
 # augmente la taille mémoire utilisable par javascript / nodejs
@@ -84,4 +88,4 @@ for geo in ["reun", "mart", "met"]:
         for theme in ["ind", "log", "men", "inc"]:
             for a in [1, 2, 3, 5, 10, 25, 50, 100, 250, 500]:
                 print("*** " + geo + " " + str(year) + " " + theme + " " + str(a*200) + "m")
-                tuilage(year, geo, a, 2, theme)
+                process(year, geo, a, 2, theme)
