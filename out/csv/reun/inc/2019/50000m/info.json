@@ -1,7 +1,7 @@
 {
    "dims": [],
    "crs": "2975",
-   "tileSizeCell": "256",
+   "tileSizeCell": 256,
    "originPoint": {
       "x": 300000,
       "y": 7600000

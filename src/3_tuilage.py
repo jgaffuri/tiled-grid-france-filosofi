@@ -89,7 +89,7 @@ def tuilage(year, geo, resolution, theme):
 
 for geo in ["reun", "mart"]: #, "met"]:
     for year in [2021, 2019, 2017, 2015]:
-        for resolution in [200, 400, 600, 1000, 2000, 5000, 10000, 50000, 100000]:
+        for resolution in [200, 400, 600, 1000, 2000, 5000, 10000, 20000, 50000, 100000]:
             for theme in ["ind", "log", "men", "inc"]:
                 print("*** " + geo + " " + str(year) + " " + theme)
                 tuilage(year, geo, resolution, theme)
