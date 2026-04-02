@@ -1,9 +1,4 @@
-#!/home/juju/pythonvenvgridDE/bin python
-
-# /home/juju/pythonvenvgridDE/bin/python ./src/harmonise.py /usr/bin/python3 /home/juju/workspace/tiled-grid-france-filosofi/src/harmonise.py
-
 import pandas as pd
-import numpy as np
 import os  
 
 
@@ -47,7 +42,7 @@ def harmonise(year, geo, printfinal):
 
     print("Sauvegarde")
     if not os.path.exists('tmp'): os.makedirs('tmp')
-    df.to_csv("tmp/"+year+"_"+geo+".csv", index=False)
+    df.to_csv("tmp/"+year+"_"+geo+"_200.csv", index=False)
 
 
 #execute harmonisation function for all years and geo regions
