@@ -51,10 +51,11 @@ def process(year, geo, a, rounding, theme):
 
     print("Transformation")
     input_file = "tmp/" + str(year) + "_" + geo + ".csv"
-    gridtiler.grid_transformation(input_file, cell_transformation_fun, "tmp/" theme+"_"+ str(year) + "_" + geo + ".csv")
-
+    gridtiler.grid_transformation(input_file, cell_transformation_fun, "tmp/" theme+"_"+ str(year) + "_" + geo + "_200.csv")
 
     # aggregation
+    # for a in [1, 2, 3, 5, 10, 25, 50, 100, 250, 500]:
+
     # tuilage
 
 
@@ -91,6 +92,5 @@ def process(year, geo, a, rounding, theme):
 for geo in ["reun", "mart", "met"]:
     for year in [2019, 2017, 2015]:
         for theme in ["ind", "log", "men", "inc"]:
-            for a in [1, 2, 3, 5, 10, 25, 50, 100, 250, 500]:
-                print("*** " + geo + " " + str(year) + " " + theme + " " + str(a*200) + "m")
-                process(year, geo, a, 2, theme)
+            print("*** " + geo + " " + str(year) + " " + theme)
+            process(year, geo, 2, theme)
