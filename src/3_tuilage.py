@@ -34,7 +34,6 @@ def tuilage(year, geo, resolution, theme):
         y = 1500000
 
     # transformation par thème
-    # TODO: inclure transformation dans grid_tiling directement
     def cell_transformation_fun(c):
         for k in list(c.keys()):
             if k not in cols: del c[k]
