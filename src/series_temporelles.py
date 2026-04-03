@@ -1,8 +1,6 @@
 import pandas as pd
 import subprocess
 
-# /home/juju/pythonvenvgridDE/bin/python ./src/series_temporelles.py /usr/bin/python3 /home/juju/workspace/tiled-grid-france-filosofi/src/series_temporelles.py
-
 
 # Charge fichier par année et extrait les données pour la séries temporelle
 def extraction(year, geo, cols, renameFun, printfinal=False):
