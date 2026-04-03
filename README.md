@@ -35,7 +35,7 @@ Le script d'agrégation `2_agregation.py`, en Python, est [**ICI**](/src/2_agreg
 
 ## Tuilage
 
-Le script `3_tuilage.py` [**ICI**](/src/3_tuilage.py) produit les tuiles utilisables par GridViz dans le répertoire `out/`. Le programme [GridTiler](https://github.com/eurostat/gridtiler#installation) doit être installé au préalable.
+Le script `3_tuilage.py` [**ICI**](/src/3_tuilage.py) produit les tuiles utilisables par GridViz dans le répertoire `out/`. La bibliothèque python [GridTiler](https://github.com/eurostat/gridtiler/tree/main/py) est utilisée.
 
 Les données sont groupées par thème: Population et niveau de vie, population par âge, logements, ménages.
 
