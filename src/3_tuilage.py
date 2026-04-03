@@ -40,8 +40,8 @@ def tuilage(year, geo, resolution, theme):
             if k not in cols: del c[k]
 
     input_file = "tmp/" + str(year) + "_" + geo + "_" + str(resolution) + ".csv"
-    out_file = "tmp/" + str(year) + "_" + geo + "_" + str(resolution) + "_" + theme + ".csv"
-    gridtiler.grid_transformation(input_file, cell_transformation_fun, out_file)
+    #out_file = "tmp/" + str(year) + "_" + geo + "_" + str(resolution) + "_" + theme + ".csv"
+    #gridtiler.grid_transformation(input_file, cell_transformation_fun, out_file)
 
     #create output folder
     #out_folder = 'out/csv/' +geo+ str(resolution)
@@ -50,7 +50,7 @@ def tuilage(year, geo, resolution, theme):
     # tuilage
     format = "csv" # csv parquet
     gridtiler.grid_tiling(
-        out_file,
+        input_file,
         "./out/"+format+"/" + geo + "/" + theme + "/" + str(year) + "/" + str(resolution) + "m/",
         resolution,
         tile_size_cell = t,
@@ -59,6 +59,7 @@ def tuilage(year, geo, resolution, theme):
         format = format,
         crs = crs,
         clean_output_folder = True,
+        transform_fun = cell_transformation_fun,
     )
 
 
