@@ -37,6 +37,7 @@ def tuilage(year, geo, resolution, theme):
     def cell_transformation_fun(c):
         for k in list(c.keys()):
             if k not in cols: del c[k]
+        return c
 
     input_file = "tmp/" + str(year) + "_" + geo + "_" + str(resolution) + ".csv"
     #out_file = "tmp/" + str(year) + "_" + geo + "_" + str(resolution) + "_" + theme + ".csv"
