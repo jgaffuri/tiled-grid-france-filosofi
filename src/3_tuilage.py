@@ -2,22 +2,20 @@ from pygridmap import gridtiler
 import os
 
 
-def tuilage(year, geo, resolution, theme):
-    # défini les paramètres du tuilage en fonction du theme
+def tuilage(year, geo, resolution, theme, format):
+    # défini les paramètres du tuilage en fonction du theme: les colonnes à conserver et la taille de tuile en nombre de cellules
     if theme == "ind":
-        t = 128
         cols = ["x","y","imputed","ind","ind_0_3","ind_11_17","ind_18_24","ind_25_39","ind_40_54","ind_4_5","ind_55_64","ind_65_79","ind_6_10","ind_80p","ind_inc"]
+        t = 128
     elif theme == "log":
-        t = 128
         cols = ["x","y","imputed","ind","log_45_70","log_70_90","log_ap90","log_av45","log_inc","log_soc"]
-    elif theme == "men":
         t = 128
+    elif theme == "men":
         cols = ["x","y","imputed","ind","men","men_1ind","men_5ind","men_coll","men_fmp","men_mais","men_pauv","men_prop","men_surf"]
+        t = 128
     elif theme == "inc":
-        t = 256
         cols = ["x","y","imputed","ind","ind_snv"]
-
-    cols = set(cols)
+        t = 256
 
     # défini les paramètres du tuilage en fonction du territoire géographique
     if geo == "met":
@@ -33,24 +31,16 @@ def tuilage(year, geo, resolution, theme):
         x = 600000
         y = 1500000
 
-    # transformation par thème
+    # transformation par thème: garde uniquement les colonnes d'interet pour le thème
+    cols = set(cols)
     def cell_transformation_fun(c):
         for k in list(c.keys()):
             if k not in cols: del c[k]
         return c
 
-    input_file = "tmp/" + str(year) + "_" + geo + "_" + str(resolution) + ".csv"
-    #out_file = "tmp/" + str(year) + "_" + geo + "_" + str(resolution) + "_" + theme + ".csv"
-    #gridtiler.grid_transformation(input_file, cell_transformation_fun, out_file)
-
-    #create output folder
-    #out_folder = 'out/csv/' +geo+ str(resolution)
-    #if not os.path.exists(out_folder): os.makedirs(out_folder)
-
     # tuilage
-    format = "csv" # csv parquet
     gridtiler.grid_tiling(
-        input_file,
+        "tmp/" + str(year) + "_" + geo + "_" + str(resolution) + ".csv",
         "./out/"+format+"/" + geo + "/" + theme + "/" + str(year) + "/" + str(resolution) + "m/",
         resolution,
         tile_size_cell = t,
@@ -64,11 +54,12 @@ def tuilage(year, geo, resolution, theme):
 
 
 
-# lance le tuilage pour tous les territoires geographiques, toutes les années, tous les thèmes et toutes les résolution
+# lance le tuilage pour tous les territoires geographiques, toutes les années, tous les thèmes, toutes les résolution
 
 for geo in ["reun", "mart", "met"]:
     for year in [2021, 2019, 2017, 2015]:
         for resolution in [200, 400, 600, 1000, 2000, 5000, 10000, 20000, 50000, 100000]:
             for theme in ["ind", "log", "men", "inc"]:
                 print("*** " + geo + " " + str(year) + " " + theme)
-                tuilage(year, geo, resolution, theme)
+                tuilage(year, geo, resolution, theme, "csv")
+                #tuilage(year, geo, resolution, theme, "parquet")

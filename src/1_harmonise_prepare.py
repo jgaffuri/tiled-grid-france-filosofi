@@ -25,7 +25,7 @@ def harmonise(year, geo, printfinal):
     print("Classe colonnes par ordre alphabétique")
     df = df.reindex(sorted(df.columns), axis=1)
 
-    print("inspire ID to x,y")
+    print("Extrait x,y de l'identifiant INSPIRE")
     def xfun(c):
         a = c['id'].split("N")[1].split("E")
         return int(a[1])
@@ -35,8 +35,8 @@ def harmonise(year, geo, printfinal):
     df['x'] = df.apply(xfun, axis=1)
     df['y'] = df.apply(yfun, axis=1)
 
+    print("Supprime l'identifiant INSPIRE")
     df = df.drop(['id'], axis=1)
-
 
     if(printfinal): print(df)
 
@@ -45,7 +45,7 @@ def harmonise(year, geo, printfinal):
     df.to_csv("tmp/"+year+"_"+geo+"_200.csv", index=False)
 
 
-#execute harmonisation function for all years and geo regions
+# Execute la fonction d'harmonisation pour toutes les années et régions géographiques
 for geo in ["mart","reun","met"]:
     for year in ["2015","2017","2019","2021"]:
         print("*** "+year+" "+geo)

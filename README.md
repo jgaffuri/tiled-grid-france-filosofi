@@ -27,11 +27,15 @@ Les autre colonnes ne sont pas utilisées et peuvent être supprimées:
 - Pour 2017: *Idcar_1km, Idcar_nat, I_est_1km, lcog_geo, Groupe*
 - Pour 2015: *Id_carr1km, Id_carr_n, Groupe, Depcom, I_pauv, Id_car2010, I_est_1km*
 
-Le script d'harmonisation `harmonise.py`, en Python, est [**ICI**](/src/harmonise.py). Il produit de nouveaux fichiers harmonisés dans un répertoire `tmp/`.
+Le script d'harmonisation `1_harmonise_prepare.py`, en Python, est [**ICI**](/src/1_harmonise_prepare.py). Il produit de nouveaux fichiers harmonisés dans un répertoire `tmp/`.
+
+## Agrégation
+
+Le script d'agrégation `2_agregation.py`, en Python, est [**ICI**](/src/2_agregation.py). Il produit de nouveaux fichiers à des résolutions agrégées (400m, 600m, 1000m, 2000m, 5000m, etc.) dans un répertoire `tmp/`.
 
 ## Tuilage
 
-Le script `tuilage.py` [**ICI**](/src/tuilage.py) formate les données harmonisées (filtrage, transformation, tuilage). Le programme [GridTiler](https://github.com/eurostat/gridtiler#installation) doit être installé au préalable.
+Le script `3_tuilage.py` [**ICI**](/src/3_tuilage.py) produit les tuiles utilisables par GridViz dans le répertoire `out/`. Le programme [GridTiler](https://github.com/eurostat/gridtiler#installation) doit être installé au préalable.
 
 Les données sont groupées par thème: Population et niveau de vie, population par âge, logements, ménages.
 
