@@ -62,4 +62,4 @@ for geo in ["reun", "mart", "met"]:
             for theme in ["ind", "log", "men", "inc"]:
                 print("*** " + geo + " " + str(year) + " " + theme)
                 tuilage(year, geo, resolution, theme, "csv")
-                #tuilage(year, geo, resolution, theme, "parquet")
+                tuilage(year, geo, resolution, theme, "parquet")
