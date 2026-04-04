@@ -3,9 +3,9 @@ import subprocess
 
 
 # Charge fichier par année et extrait les données pour la séries temporelle
-def extraction(year, geo, cols, renameFun, printfinal=False):
+def extraction(year, geo, cols, res, renameFun, printfinal=False):
     print("charge " + year + " " + geo)
-    d = pd.read_csv("./tmp/" + year + "_" + geo + ".csv")
+    d = pd.read_csv("./tmp/" + year + "_" + geo + "_" + res + ".csv")
     d = d[cols]
     d = d.rename(columns=renameFun(year))
     if printfinal:
@@ -14,14 +14,15 @@ def extraction(year, geo, cols, renameFun, printfinal=False):
 
 
 #
-def jointure(geo, code, cols, renameFun, printfinal=False):
-    d = extraction("2015", geo, cols, renameFun)
-    d = pd.merge(d, extraction("2017", geo, cols, renameFun), on="id", how="outer")
-    d = pd.merge(d, extraction("2019", geo, cols, renameFun), on="id", how="outer")
+def jointure(geo, code, cols, res, renameFun, printfinal=False):
+    d = extraction("2015", geo, cols, res, renameFun)
+    d = pd.merge(d, extraction("2017", geo, cols, res, renameFun), on="id", how="outer")
+    d = pd.merge(d, extraction("2019", geo, cols, res, renameFun), on="id", how="outer")
+    d = pd.merge(d, extraction("2021", geo, cols, res, renameFun), on="id", how="outer")
     if printfinal:
         print(d)
     # Sauvegarde
-    d.to_csv("./tmp/ts_" + code + "_" + geo + ".csv", index=False)
+    d.to_csv("./tmp/ts_" + code + "_" + geo + "_" + res + ".csv", index=False)
 
 
 # Préparation des données des séries temporelles, par région
