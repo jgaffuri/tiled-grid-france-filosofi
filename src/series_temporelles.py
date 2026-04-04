@@ -5,9 +5,9 @@ import subprocess
 # Charge fichier par année et extrait les données pour la séries temporelle
 def extraction(year, geo, cols, res, renameFun, printfinal=False):
     print("charge " + year + " " + geo)
-    d = pd.read_csv("./tmp/" + year + "_" + geo + "_" + res + ".csv")
+    d = pd.read_csv("./tmp/" + year + "_" + geo + "_" + str(res) + ".csv")
     d = d[cols]
-    d["id"] = str(d["x"])+"_"+str(d["y"])
+    d["id"] = d["x"].astype(str) + "_" + d["y"].astype(str)
     d = d.rename(columns=renameFun(year))
     if printfinal:
         print(d)
