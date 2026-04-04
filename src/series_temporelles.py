@@ -7,6 +7,7 @@ def extraction(year, geo, cols, res, renameFun, printfinal=False):
     print("charge " + year + " " + geo)
     d = pd.read_csv("./tmp/" + year + "_" + geo + "_" + res + ".csv")
     d = d[cols]
+    d["id"] = str(d["x"])+"_"+str(d["y"])
     d = d.rename(columns=renameFun(year))
     if printfinal:
         print(d)
@@ -28,20 +29,26 @@ def jointure(geo, code, cols, res, renameFun, printfinal=False):
 # Préparation des données des séries temporelles, par région
 #for geo in []:
 for geo in ["reun", "mart", "met"]:
-    print("*** Jointure ind " + geo)
-    jointure(
-        geo,
-        "ind",
-        ["id", "ind", "imputed"],
-        lambda year: {"ind": "ind" + year, "imputed": "imp" + year},
-    )
-    print("*** Jointure ind_snv " + geo)
-    jointure(
-        geo,
-        "ind_snv",
-        ["id", "ind", "ind_snv"],
-        lambda year: {"ind": "ind" + year, "ind_snv": "ind_snv" + year},
-    )
+    for a in [1, 2, 3, 5, 10, 25, 50, 100, 250, 500]:
+        res = a*200
+        print("*** " + geo + " " + str(res) + "m")
+
+        print("*** Jointure ind " + geo)
+        jointure(
+            geo,
+            "ind",
+            ["id", "ind", "imputed"],
+            res,
+            lambda year: {"ind": "ind" + year, "imputed": "imp" + year},
+        )
+        print("*** Jointure ind_snv " + geo)
+        jointure(
+            geo,
+            "ind_snv",
+            ["id", "ind", "ind_snv"],
+            res,
+            lambda year: {"ind": "ind" + year, "ind_snv": "ind_snv" + year},
+        )
 
 
 # Tuilage, via gridtiler
