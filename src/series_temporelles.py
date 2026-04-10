@@ -1,7 +1,5 @@
-import code
-
 import pandas as pd
-import subprocess
+from pygridmap import gridtiler
 
 
 # Charge fichier par année et extrait les données pour la séries temporelle
@@ -61,30 +59,38 @@ for geo in ["reun", "mart", "met"]:
             lambda year: {"ind": "ind" + year, "ind_snv": "ind_snv" + year},
         )
 
+        # tuilage des fichiers de séries temporelles
+        for code in ["ind_snv", "ind"]:
 
-# Tuilage, via gridtiler
-for geo in []:
-#for geo in ["reun", "mart", "met"]:
-    for col in ["ind_snv", "ind"]:
-        t = 128
-        rounding = 2
+            # défini les paramètres du tuilage en fonction du territoire géographique
+            if geo == "met":
+                crs = "3035"
+                x = 3200000
+                y = 2000000
+            elif geo == "reun":
+                crs = "2975"
+                x = 300000
+                y = 7600000
+            elif geo == "mart":
+                crs = "5490"
+                x = 600000
+                y = 1500000
 
-        # défini les paramètres du tuilage en fonction du territoire géographique
-        if geo == "met":
-            crs = "3035"
-            x = 3200000
-            y = 2000000
-        elif geo == "reun":
-            crs = "2975"
-            x = 300000
-            y = 7600000
-        elif geo == "mart":
-            crs = "5490"
-            x = 600000
-            y = 1500000
+            print("*** " + geo + " " + str(res) + "m")
 
-        for a in [1, 2, 3, 5, 10, 25, 50, 100, 250, 500]:
-            print("*** " + geo + " " + str(a * 200) + "m")
+            # tuilage
+            gridtiler.grid_tiling(
+                "./tmp/ts_" + code + "_" + geo + "_" + str(res) + ".csv",
+                "./out/csv/" + geo + "/ts_" + code + "/" + str(res) + "m/",
+                res,
+                tile_size_cell = 128,
+                x_origin = x,
+                y_origin = y,
+                format = "parquet",
+                crs = crs,
+                clean_output_folder = True,
+            )
+
 
 '''
             subprocess.run(
