@@ -1,3 +1,5 @@
+import code
+
 import pandas as pd
 import subprocess
 
@@ -14,7 +16,7 @@ def extraction(year, geo, cols, res, renameFun, printfinal=False):
     return d
 
 
-#
+# Produit un fichier de séries temporelles par jointure (sur le champ 'id') des fichiers annuels, par région
 def jointure(geo, code, cols, res, renameFun, printfinal=False):
     d = extraction("2015", geo, cols, res, renameFun)
     d = pd.merge(d, extraction("2017", geo, cols, res, renameFun), on="id", how="outer")
@@ -22,6 +24,11 @@ def jointure(geo, code, cols, res, renameFun, printfinal=False):
     d = pd.merge(d, extraction("2021", geo, cols, res, renameFun), on="id", how="outer")
     if printfinal:
         print(d)
+
+    # Extraction des coordonnées x et y à partir de l'id
+    d[["x", "y"]] = d["id"].str.split("_", expand=True).astype(int)
+    d = d.drop(columns=["id"])
+
     # Sauvegarde
     d.to_csv("./tmp/ts_" + code + "_" + geo + "_" + str(res) + ".csv", index=False)
 
@@ -49,7 +56,6 @@ for geo in ["reun", "mart", "met"]:
             res,
             lambda year: {"ind": "ind" + year, "ind_snv": "ind_snv" + year},
         )
-
 
 
 # Tuilage, via gridtiler
