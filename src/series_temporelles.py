@@ -50,6 +50,7 @@ for geo in ["reun", "mart", "met"]:
             res,
             lambda year: {"ind": "ind" + year, "imputed": "imp" + year},
         )
+
         print("*** Jointure ind_snv " + geo)
         jointure(
             geo,
@@ -76,20 +77,21 @@ for geo in ["reun", "mart", "met"]:
                 x = 600000
                 y = 1500000
 
-            print("*** " + geo + " " + str(res) + "m")
-
             # tuilage
-            gridtiler.grid_tiling(
-                "./tmp/ts_" + code + "_" + geo + "_" + str(res) + ".csv",
-                "./out/csv/" + geo + "/ts_" + code + "/" + str(res) + "m/",
-                res,
-                tile_size_cell = 128,
-                x_origin = x,
-                y_origin = y,
-                format = "parquet",
-                crs = crs,
-                clean_output_folder = True,
-            )
+            for format in ["parquet", "csv"]:
+                print("*** tuilage " + code + " " + geo + " " + format)
+
+                gridtiler.grid_tiling(
+                    "./tmp/ts_" + code + "_" + geo + "_" + str(res) + ".csv",
+                    "./out/"+format+"/" + geo + "/ts_" + code + "/" + str(res) + "m/",
+                    res,
+                    tile_size_cell = 128,
+                    x_origin = x,
+                    y_origin = y,
+                    format = format,
+                    crs = crs,
+                    clean_output_folder = True,
+                )
 
 
 '''
