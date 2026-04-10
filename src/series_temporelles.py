@@ -29,6 +29,10 @@ def jointure(geo, code, cols, res, renameFun, printfinal=False):
     d[["x", "y"]] = d["id"].str.split("_", expand=True).astype(int)
     d = d.drop(columns=["id"])
 
+    # Réorganisation des colonnes pour que x et y soient les premières
+    cols = ["x", "y"] + [c for c in d.columns if c not in ["x", "y"]]
+    d = d[cols]
+
     # Sauvegarde
     d.to_csv("./tmp/ts_" + code + "_" + geo + "_" + str(res) + ".csv", index=False)
 
